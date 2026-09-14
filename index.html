@@ -1370,9 +1370,397 @@
         min-width: 100%;
       }
     }
+
+    /* ================= MUSIC TOGGLE ================= */
+    .music-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--plum-deep);
+      color: var(--cream);
+      border: 1px solid var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 200;
+      box-shadow: 0 6px 20px rgba(58, 22, 54, 0.4);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+    .music-toggle:hover {
+      transform: scale(1.08);
+      background: var(--sage-dark);
+    }
+    .music-toggle.playing {
+      animation: musicPulse 2.4s infinite;
+    }
+    @keyframes musicPulse {
+      0% { box-shadow: 0 0 0 0 rgba(92, 110, 76, 0.55); }
+      70% { box-shadow: 0 0 0 16px rgba(92, 110, 76, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(92, 110, 76, 0); }
+    }
+    @media (max-width: 640px) {
+      .music-toggle {
+        width: 46px;
+        height: 46px;
+        bottom: 18px;
+        right: 18px;
+      }
+    }
+
+    /* ============================================================
+   MOBILE RESPONSIVENESS — comprehensive fixes
+   ============================================================ */
+
+/* ---------- GLOBAL ---------- */
+img, iframe, svg { max-width: 100%; height: auto; }
+* { -webkit-tap-highlight-color: transparent; }
+
+/* ---------- TABLET (≤900px) ---------- */
+@media (max-width: 900px) {
+  .wrap { padding: 0 20px; }
+  h2.section-title { font-size: 44px; }
+  .location-grid { gap: 30px; }
+  .location-grid iframe { width: 100% !important; height: 340px !important; }
+  .menu-list { gap: 20px; padding: 16px 24px 0 0; }
+  .menu-list li a { font-size: 11.5px; letter-spacing: 0.14em; }
+  .secondary-grid { gap: 24px 28px; }
+  .ent-two-col { gap: 40px; }
+}
+
+/* ---------- MOBILE (≤640px) ---------- */
+@media (max-width: 640px) {
+
+  /* ----- Full-width carousel ----- */
+  .full-carousel { height: 70vh; min-height: 420px; }
+  .full-carousel-arrow { width: 40px; height: 40px; font-size: 18px; }
+  .full-carousel-arrow.prev { left: 10px; }
+  .full-carousel-arrow.next { right: 10px; }
+  .full-carousel-dots { bottom: 18px; gap: 8px; }
+  .full-dot { width: 8px; height: 8px; }
+  .full-dot.active { width: 22px; }
+
+  /* Hero name overlay — move up and shrink */
+  .hero-content-bottom-left {
+    bottom: 70px;
+    left: 20px;
+    right: 20px;
+    max-width: 100%;
+  }
+  .hero-content-bottom-left .hero-names {
+    font-size: clamp(36px, 12vw, 56px);
+    line-height: 1.05;
+  }
+  .hero-content-bottom-left .hero-names .amp { padding: 0 6px; }
+
+  /* ----- Sticky menu ----- */
+  .menu-bar { pointer-events: none; }
+  .menu-bar.scrolled { pointer-events: auto; }
+  .menu-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 16px;
+    padding: 12px 14px;
+    background: rgba(58, 22, 54, 0.35);
+    backdrop-filter: blur(6px);
+    pointer-events: auto;
+  }
+  .menu-bar.scrolled .menu-list {
+    background: transparent;
+    backdrop-filter: none;
+  }
+  .menu-list li a { font-size: 10px; letter-spacing: 0.12em; }
+  .menu-list li a::after { display: none; }
+
+  /* ----- Countdown ----- */
+  .datetime { padding: 50px 16px; }
+  .datetime .big-date { font-size: 26px; }
+  .datetime .big-time { font-size: 12px; margin-bottom: 32px; }
+  .countdown { gap: 8px; }
+  .count-box { width: 68px; padding: 14px 0; }
+  .count-box .num { font-size: 26px; }
+  .count-box .lbl { font-size: 9px; letter-spacing: 0.12em; }
+
+  /* ----- RSVP button ----- */
+  .rsvp-btn { font-size: 15px; padding: 14px 36px; margin-bottom: 40px; }
+  .rsvp-btn:hover { padding: 14px 36px; }
+
+  /* ----- Monogram ----- */
+  .hero { padding: 50px 16px 60px; min-height: auto; }
+  .monogram-big img { width: 260px !important; max-width: 80vw; height: auto; }
+  .monogram-sub { font-size: 15px; padding: 0 8px; }
+
+  /* ----- General sections ----- */
+  section.page-block { padding: 60px 16px; }
+  h2.section-title { font-size: 40px; }
+  .section-sub { font-size: 12px; margin-bottom: 32px; padding: 0 8px; }
+  .eyebrow { font-size: 10.5px; letter-spacing: 0.28em; }
+
+  /* ----- Location ----- */
+  .location-grid { flex-direction: column; align-items: center; gap: 24px; }
+  .location-grid iframe { width: 100% !important; height: 280px !important; }
+  .venue-card h3 { font-size: 28px; }
+
+  /* ----- Entourage ----- */
+  .ent-block { margin-bottom: 36px; }
+  .ent-two-col {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+  .ent-col, .ent-col .names { width: 100%; }
+  .ent-col .names { font-size: 16px; line-height: 1.8; }
+  .secondary-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    max-width: 100%;
+  }
+  .secondary-grid .names { font-size: 15px; }
+  .divider { margin: 20px auto; max-width: 220px; }
+  .ent-block h4,
+  .ent-block .ent-col h4 { font-size: 13px; letter-spacing: 0.1em; }
+
+  /* Flower girls side-by-side stays 2 columns but tighter */
+  .ent-two-col .ent-col .names br { display: block; }
+
+  /* ----- Dress code ----- */
+  .dress-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+  }
+  .dress-card { width: 100%; max-width: 300px; }
+  .dress-card h4 { font-size: 26px; }
+  .dress-card img { max-width: 100% !important; height: auto; }
+
+  /* ----- Gifts ----- */
+  .gift-box { max-width: 100%; padding: 0 4px; }
+  .gift-box p { font-size: 14px; line-height: 1.8; }
+  .gift-icon { width: 50px; height: 50px; }
+  .qr-btn { font-size: 14px; padding: 12px 28px; }
+
+  /* ----- Reminders ----- */
+  .reminders-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .reminder-card { padding: 24px 20px; }
+  .reminder-card h3 { font-size: 26px; }
+  .reminder-full { padding: 26px 20px; }
+  .reminder-full h3 { font-size: 28px; }
+
+  /* ----- RSVP form ----- */
+  .rsvp-section { padding: 60px 14px; }
+  .rsvp-form {
+    padding: 30px 20px 34px 20px;
+    max-width: 100%;
+  }
+  .rsvp-form:before,
+  .rsvp-form:after { width: 18px; height: 18px; }
+  .rsvp-step-title { font-size: 20px; }
+  .rsvp-step-sub { font-size: 12px; }
+  .deadline { font-size: 12px; padding: 0 6px; }
+
+  /* RSVP response row stacks */
+  .rsvp-response-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    text-align: center;
+  }
+  .rsvp-response-row .r-name { font-size: 17px; }
+  .toggle-pair {
+    flex-direction: column;
+    width: 100%;
+  }
+  .toggle-btn { width: 100%; padding: 12px; font-size: 12.5px; }
+
+  /* Member rows stack */
+  .member-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 14px 0;
+  }
+  .member-row .mem-name { text-align: center; font-size: 15.5px; }
+  .member-toggle { justify-content: center; }
+  .member-toggle button { flex: 1; padding: 9px 10px; font-size: 10.5px; }
+
+  /* Step buttons stack */
+  .step-btn-row { flex-direction: column-reverse; gap: 10px; }
+  .step-btn-row .submit-btn { width: 100%; padding: 14px 0; font-size: 15px; }
+
+  /* Match items */
+  .match-item { padding: 13px 14px; gap: 10px; }
+  .match-item .m-name { font-size: 15.5px; }
+  .match-item .m-status { font-size: 9.5px; }
+
+  /* Summary */
+  .rsvp-summary { padding: 20px 16px; }
+  .rsvp-summary .s-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px 0;
+  }
+  .rsvp-summary .s-name { font-size: 16px; }
+  .rsvp-summary .s-status { font-size: 11px; }
+
+  /* Email field */
+  .email-check { font-size: 12.5px; }
+
+  /* QR modal */
+  .modal-box { padding: 24px 16px; }
+  .modal-box h4 { font-size: 28px; }
+  .modal-grid { gap: 16px; }
+  .modal-card { min-width: 100%; padding: 16px; }
+  .modal-card img { width: 180px !important; }
+  .modal-close { width: 30px; height: 30px; font-size: 14px; }
+
+  /* Footer */
+  footer { padding: 30px 16px; font-size: 10px; line-height: 1.7; }
+}
+
+/* ---------- SMALL MOBILE (≤380px) ---------- */
+@media (max-width: 380px) {
+  .menu-list { gap: 8px 12px; padding: 10px 10px; }
+  .menu-list li a { font-size: 9.5px; letter-spacing: 0.1em; }
+  .hero-content-bottom-left .hero-names { font-size: 34px; }
+  .count-box { width: 60px; padding: 12px 0; }
+  .count-box .num { font-size: 22px; }
+  h2.section-title { font-size: 34px; }
+  .rsvp-form { padding: 26px 16px 30px 16px; }
+  .toggle-btn { font-size: 11.5px; padding: 10px; }
+}
   </style>
 </head>
 <body>
+
+  <div id="enterOverlay" style="
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg, #3a1636 0%, #5c2a54 100%);
+  z-index:99999;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:var(--cream);
+  padding:24px;
+  overflow:hidden;
+  transition:opacity 0.9s ease, visibility 0.9s ease;
+">
+
+  <!-- Floral SVG background -->
+  <img src="floral.svg" alt="" aria-hidden="true" style="
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    opacity:0.28;
+    pointer-events:none;
+    user-select:none;
+    z-index:0;
+  ">
+
+  <!-- Soft radial vignette so the text stays readable -->
+  <div aria-hidden="true" style="
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 50% 50%, rgba(58,22,54,0.15) 0%, rgba(58,22,54,0.55) 55%, rgba(58,22,54,0.85) 100%);
+    pointer-events:none;
+    z-index:1;
+  "></div>
+
+  <!-- Content -->
+  <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;">
+
+    <!-- Small script label above names -->
+    <div style="
+      font-family:'Cormorant Garamond',serif;
+      font-size:13px;
+      letter-spacing:0.4em;
+      text-transform:uppercase;
+      opacity:0.8;
+      margin-bottom:16px;
+    ">
+      Together with their families
+    </div>
+
+    <!-- Names -->
+    <div style="
+      font-family:'Great Vibes',serif;
+      font-size:clamp(48px,9vw,84px);
+      line-height:1.05;
+      margin-bottom:8px;
+      text-shadow:0 4px 20px rgba(0,0,0,0.4);
+    ">
+      Nikko <span style="font-family:'Tangerine',cursive;color:var(--sage-light);padding:0 8px;">&amp;</span> Roselle
+    </div>
+
+    <!-- Ornamental divider -->
+    <div style="
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin:14px 0 18px 0;
+    ">
+      <span style="width:60px;height:1px;background:var(--sage-light);opacity:0.6;"></span>
+      <span style="width:6px;height:6px;background:var(--gold);transform:rotate(45deg);"></span>
+      <span style="width:60px;height:1px;background:var(--sage-light);opacity:0.6;"></span>
+    </div>
+
+    <!-- Date -->
+    <div style="
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(13px,2vw,16px);
+      letter-spacing:0.28em;
+      text-transform:uppercase;
+      opacity:0.9;
+      margin-bottom:44px;
+    ">
+      December 29, 2026 · Gamboa's Orchard, San Jose, Malilipot, Albay
+    </div>
+
+    <!-- Open Invitation button -->
+    <button id="enterBtn" style="
+      background:transparent;
+      color:var(--cream);
+      border:1px solid var(--cream);
+      font-family:'Cormorant Garamond',serif;
+      font-size:16px;
+      letter-spacing:0.22em;
+      text-transform:uppercase;
+      padding:16px 52px;
+      cursor:pointer;
+      transition:all 0.3s ease;
+      position:relative;
+    "
+    onmouseover="this.style.background='var(--cream)';this.style.color='var(--plum-deep)';"
+    onmouseout="this.style.background='transparent';this.style.color='var(--cream)';"
+    >
+      Open Invitation
+    </button>
+
+    <!-- Music note -->
+    <div style="
+      font-size:11px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      opacity:0.65;
+      margin-top:22px;
+    ">
+      
+    </div>
+
+  </div>
+</div>
   <!-- ================= STICKY MENU ================= -->
   <nav class="menu-bar">
     <ul class="menu-list">
@@ -1745,6 +2133,12 @@
     </div>
   </div>
 
+  <!-- ================= BACKGROUND MUSIC ================= -->
+  <button id="musicToggle" class="music-toggle" aria-label="Play music" title="Play music">
+    <svg id="musicIconPlay" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    <svg id="musicIconPause" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display:none;"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  </button>
+
   <footer>Nikko &amp; Roselle &nbsp;·&nbsp; December 29, 2026 &nbsp;·&nbsp; Gamboa's Orchard, Malilipot, Albay</footer>
 
   <script>
@@ -1814,246 +2208,420 @@
   </script>
 
   <script>
-    // ================= GUEST LIST (embedded — no database) =================
-    const GUEST_LIST = [
-      {"name": "Groom", "category": "FAM", "group": "S-Groom", "seats": 1, "members": ["Groom"]},
-      {"name": "Bride", "category": "FAM", "group": "S-Bride", "seats": 1, "members": ["Bride"]},
-      {"name": "Roger Legson", "category": "FAM", "group": "G01", "seats": 4, "members": ["Roger Legson", "Lilian Legson", "Roger Ian Legson", "Roger Legson Jr."]},
-      {"name": "Lilian Legson", "category": "FAM", "group": "G01", "seats": 4, "members": ["Roger Legson", "Lilian Legson", "Roger Ian Legson", "Roger Legson Jr."]},
-      {"name": "Roger Ian Legson", "category": "ENT", "group": "G01", "seats": 4, "members": ["Roger Legson", "Lilian Legson", "Roger Ian Legson", "Roger Legson Jr."]},
-      {"name": "Roger Legson Jr.", "category": "ENT", "group": "G01", "seats": 4, "members": ["Roger Legson", "Lilian Legson", "Roger Ian Legson", "Roger Legson Jr."]},
-      {"name": "Jean Luces", "category": "Relative", "group": "G02", "seats": 2, "members": ["Jean Luces", "Amelia Luces"]},
-      {"name": "Amelia Luces", "category": "Relative", "group": "G02", "seats": 2, "members": ["Jean Luces", "Amelia Luces"]},
-      {"name": "Angelica Sacapaño", "category": "ENT", "group": "G03", "seats": 3, "members": ["Angelica Sacapaño", "Ma. Christelle Jaucian", "Abegail Miranda"]},
-      {"name": "Ma. Christelle Jaucian", "category": "ENT", "group": "G03", "seats": 3, "members": ["Angelica Sacapaño", "Ma. Christelle Jaucian", "Abegail Miranda"]},
-      {"name": "Abegail Miranda", "category": "ENT", "group": "G03", "seats": 3, "members": ["Angelica Sacapaño", "Ma. Christelle Jaucian", "Abegail Miranda"]},
-      {"name": "Frances Margaret Borja", "category": "Friends", "group": "G04", "seats": 5, "members": ["Frances Margaret Borja", "Dalen Mari Guillermo", "Dwight Martin Camacho", "Ann Cyline Competente", "Ethan Jacob Belarmino"]},
-      {"name": "Dalen Mari Guillermo", "category": "Friends", "group": "G04", "seats": 5, "members": ["Frances Margaret Borja", "Dalen Mari Guillermo", "Dwight Martin Camacho", "Ann Cyline Competente", "Ethan Jacob Belarmino"]},
-      {"name": "Dwight Martin Camacho", "category": "Friends", "group": "G04", "seats": 5, "members": ["Frances Margaret Borja", "Dalen Mari Guillermo", "Dwight Martin Camacho", "Ann Cyline Competente", "Ethan Jacob Belarmino"]},
-      {"name": "Ann Cyline Competente", "category": "Friends", "group": "G04", "seats": 5, "members": ["Frances Margaret Borja", "Dalen Mari Guillermo", "Dwight Martin Camacho", "Ann Cyline Competente", "Ethan Jacob Belarmino"]},
-      {"name": "Ethan Jacob Belarmino", "category": "Friends", "group": "G04", "seats": 5, "members": ["Frances Margaret Borja", "Dalen Mari Guillermo", "Dwight Martin Camacho", "Ann Cyline Competente", "Ethan Jacob Belarmino"]},
-      {"name": "Maricon Balilla", "category": "ENT", "group": "G05", "seats": 5, "members": ["Maricon Balilla", "Abbey Gale Bandola", "Shaznay Alliah Reales", "Tracy Dianne Cua", "Inez Cecilia Nocedo"]},
-      {"name": "Abbey Gale Bandola", "category": "ENT", "group": "G05", "seats": 5, "members": ["Maricon Balilla", "Abbey Gale Bandola", "Shaznay Alliah Reales", "Tracy Dianne Cua", "Inez Cecilia Nocedo"]},
-      {"name": "Shaznay Alliah Reales", "category": "Friends", "group": "G05", "seats": 5, "members": ["Maricon Balilla", "Abbey Gale Bandola", "Shaznay Alliah Reales", "Tracy Dianne Cua", "Inez Cecilia Nocedo"]},
-      {"name": "Tracy Dianne Cua", "category": "Friends", "group": "G05", "seats": 5, "members": ["Maricon Balilla", "Abbey Gale Bandola", "Shaznay Alliah Reales", "Tracy Dianne Cua", "Inez Cecilia Nocedo"]},
-      {"name": "Inez Cecilia Nocedo", "category": "Friends", "group": "G05", "seats": 5, "members": ["Maricon Balilla", "Abbey Gale Bandola", "Shaznay Alliah Reales", "Tracy Dianne Cua", "Inez Cecilia Nocedo"]},
-      {"name": "Margaret Kent Villame", "category": "Friends", "group": "G06", "seats": 1, "members": ["Margaret Kent Villame"]},
-      {"name": "Ronnie Misolas", "category": "Relative", "group": "G07", "seats": 2, "members": ["Ronnie Misolas", "Richelna Misolas"]},
-      {"name": "Richelna Misolas", "category": "Relative", "group": "G07", "seats": 2, "members": ["Ronnie Misolas", "Richelna Misolas"]},
-      {"name": "Baberose Luces", "category": "VIP", "group": "G08", "seats": 2, "members": ["Baberose Luces", "Eliza Nicole Luces"]},
-      {"name": "Eliza Nicole Luces", "category": "ENT", "group": "G08", "seats": 2, "members": ["Baberose Luces", "Eliza Nicole Luces"]},
-      {"name": "Marissa Luces", "category": "VIP", "group": "G09", "seats": 3, "members": ["Marissa Luces", "Dominique Isabelle Luces", "Denise Luces"]},
-      {"name": "Dominique Isabelle Luces", "category": "Relative", "group": "G09", "seats": 3, "members": ["Marissa Luces", "Dominique Isabelle Luces", "Denise Luces"]},
-      {"name": "Denise Luces", "category": "ENT", "group": "G09", "seats": 3, "members": ["Marissa Luces", "Dominique Isabelle Luces", "Denise Luces"]},
-      {"name": "Regino Luces Jr", "category": "Relative", "group": "G10", "seats": 5, "members": ["Regino Luces Jr", "Saturnina Luces", "Angel Fatima Luces", "Regino Margarito Luces", "Carl Jones Luces"]},
-      {"name": "Saturnina Luces", "category": "Relative", "group": "G10", "seats": 5, "members": ["Regino Luces Jr", "Saturnina Luces", "Angel Fatima Luces", "Regino Margarito Luces", "Carl Jones Luces"]},
-      {"name": "Angel Fatima Luces", "category": "ENT", "group": "G10", "seats": 5, "members": ["Regino Luces Jr", "Saturnina Luces", "Angel Fatima Luces", "Regino Margarito Luces", "Carl Jones Luces"]},
-      {"name": "Regino Margarito Luces", "category": "ENT", "group": "G10", "seats": 5, "members": ["Regino Luces Jr", "Saturnina Luces", "Angel Fatima Luces", "Regino Margarito Luces", "Carl Jones Luces"]},
-      {"name": "Carl Jones Luces", "category": "Relative", "group": "G10", "seats": 5, "members": ["Regino Luces Jr", "Saturnina Luces", "Angel Fatima Luces", "Regino Margarito Luces", "Carl Jones Luces"]},
-      {"name": "Joanna Mae Bondoc", "category": "Relative", "group": "G11", "seats": 2, "members": ["Joanna Mae Bondoc", "Gian Bondoc"]},
-      {"name": "Gian Bondoc", "category": "Relative", "group": "G11", "seats": 2, "members": ["Joanna Mae Bondoc", "Gian Bondoc"]},
-      {"name": "Nathaniel Alcera", "category": "Family friend", "group": "G12", "seats": 3, "members": ["Nathaniel Alcera", "Cielo Alcera", "Daniel Joseph Alcera"]},
-      {"name": "Cielo Alcera", "category": "Family friend", "group": "G12", "seats": 3, "members": ["Nathaniel Alcera", "Cielo Alcera", "Daniel Joseph Alcera"]},
-      {"name": "Daniel Joseph Alcera", "category": "Family friend", "group": "G12", "seats": 3, "members": ["Nathaniel Alcera", "Cielo Alcera", "Daniel Joseph Alcera"]},
-      {"name": "Frank Lagatuz", "category": "Family friend", "group": "G13", "seats": 3, "members": ["Frank Lagatuz", "Lorile Paliza", "Marc Aurelle Paliza"]},
-      {"name": "Lorile Paliza", "category": "Family friend", "group": "G13", "seats": 3, "members": ["Frank Lagatuz", "Lorile Paliza", "Marc Aurelle Paliza"]},
-      {"name": "Marc Aurelle Paliza", "category": "Family friend", "group": "G13", "seats": 3, "members": ["Frank Lagatuz", "Lorile Paliza", "Marc Aurelle Paliza"]},
-      {"name": "Merle Adra", "category": "Family friend", "group": "G14", "seats": 3, "members": ["Merle Adra", "Alyssa Merl Adra", "Lenie Lozares"]},
-      {"name": "Alyssa Merl Adra", "category": "Family friend", "group": "G14", "seats": 3, "members": ["Merle Adra", "Alyssa Merl Adra", "Lenie Lozares"]},
-      {"name": "Lenie Lozares", "category": "Family friend", "group": "G14", "seats": 3, "members": ["Merle Adra", "Alyssa Merl Adra", "Lenie Lozares"]},
-      {"name": "Carlos Bon", "category": "Family friend", "group": "G15", "seats": 2, "members": ["Carlos Bon", "Lilia Bon"]},
-      {"name": "Lilia Bon", "category": "Family friend", "group": "G15", "seats": 2, "members": ["Carlos Bon", "Lilia Bon"]},
-      {"name": "Louie Domalaon", "category": "Family friend", "group": "G16", "seats": 4, "members": ["Louie Domalaon", "Rica Domalaon", "Lorie Jae Domalaon", "Lawrenz Josh Domalaon"]},
-      {"name": "Rica Domalaon", "category": "VIP", "group": "G16", "seats": 4, "members": ["Louie Domalaon", "Rica Domalaon", "Lorie Jae Domalaon", "Lawrenz Josh Domalaon"]},
-      {"name": "Lorie Jae Domalaon", "category": "Family friend", "group": "G16", "seats": 4, "members": ["Louie Domalaon", "Rica Domalaon", "Lorie Jae Domalaon", "Lawrenz Josh Domalaon"]},
-      {"name": "Lawrenz Josh Domalaon", "category": "Family friend", "group": "G16", "seats": 4, "members": ["Louie Domalaon", "Rica Domalaon", "Lorie Jae Domalaon", "Lawrenz Josh Domalaon"]},
-      {"name": "Helen Llanera", "category": "Family friend", "group": "G17", "seats": 1, "members": ["Helen Llanera"]},
-      {"name": "Renee Legson", "category": "Relative", "group": "G18", "seats": 3, "members": ["Renee Legson", "Lilia Legson", "Karen Legson"]},
-      {"name": "Lilia Legson", "category": "Relative", "group": "G18", "seats": 3, "members": ["Renee Legson", "Lilia Legson", "Karen Legson"]},
-      {"name": "Karen Legson", "category": "ENT", "group": "G18", "seats": 3, "members": ["Renee Legson", "Lilia Legson", "Karen Legson"]},
-      {"name": "Ryan Legson", "category": "Relative", "group": "G19", "seats": 4, "members": ["Ryan Legson", "Irene Legson", "Camille Legson", "Gian Legson"]},
-      {"name": "Irene Legson", "category": "Relative", "group": "G19", "seats": 4, "members": ["Ryan Legson", "Irene Legson", "Camille Legson", "Gian Legson"]},
-      {"name": "Camille Legson", "category": "ENT", "group": "G19", "seats": 4, "members": ["Ryan Legson", "Irene Legson", "Camille Legson", "Gian Legson"]},
-      {"name": "Gian Legson", "category": "Relative", "group": "G19", "seats": 4, "members": ["Ryan Legson", "Irene Legson", "Camille Legson", "Gian Legson"]},
-      {"name": "Francis Medalla Jr.", "category": "VIP", "group": "G20", "seats": 5, "members": ["Francis Medalla Jr.", "Annabel Medalla", "Francis Ken Medalla", "Francis Allain Medalla", "Francis Gabriel Medalla"]},
-      {"name": "Annabel Medalla", "category": "VIP", "group": "G20", "seats": 5, "members": ["Francis Medalla Jr.", "Annabel Medalla", "Francis Ken Medalla", "Francis Allain Medalla", "Francis Gabriel Medalla"]},
-      {"name": "Francis Ken Medalla", "category": "Relative", "group": "G20", "seats": 5, "members": ["Francis Medalla Jr.", "Annabel Medalla", "Francis Ken Medalla", "Francis Allain Medalla", "Francis Gabriel Medalla"]},
-      {"name": "Francis Allain Medalla", "category": "ENT", "group": "G20", "seats": 5, "members": ["Francis Medalla Jr.", "Annabel Medalla", "Francis Ken Medalla", "Francis Allain Medalla", "Francis Gabriel Medalla"]},
-      {"name": "Francis Gabriel Medalla", "category": "Relative", "group": "G20", "seats": 5, "members": ["Francis Medalla Jr.", "Annabel Medalla", "Francis Ken Medalla", "Francis Allain Medalla", "Francis Gabriel Medalla"]},
-      {"name": "Raul Legson", "category": "Relative", "group": "G21", "seats": 5, "members": ["Raul Legson", "Cristina Legson", "Anthony Rei Legson", "Bea Kristine Legson", "Kristian Legson"]},
-      {"name": "Cristina Legson", "category": "Relative", "group": "G21", "seats": 5, "members": ["Raul Legson", "Cristina Legson", "Anthony Rei Legson", "Bea Kristine Legson", "Kristian Legson"]},
-      {"name": "Anthony Rei Legson", "category": "Relative", "group": "G21", "seats": 5, "members": ["Raul Legson", "Cristina Legson", "Anthony Rei Legson", "Bea Kristine Legson", "Kristian Legson"]},
-      {"name": "Bea Kristine Legson", "category": "Relative", "group": "G21", "seats": 5, "members": ["Raul Legson", "Cristina Legson", "Anthony Rei Legson", "Bea Kristine Legson", "Kristian Legson"]},
-      {"name": "Kristian Legson", "category": "Relative", "group": "G21", "seats": 5, "members": ["Raul Legson", "Cristina Legson", "Anthony Rei Legson", "Bea Kristine Legson", "Kristian Legson"]},
-      {"name": "Joy Lebios", "category": "Relative", "group": "G22", "seats": 5, "members": ["Joy Lebios", "Aireen Lebios", "Joy Matthew Lebios", "Julianna Joy Lebios", "John Matthew Lebios"]},
-      {"name": "Aireen Lebios", "category": "Relative", "group": "G22", "seats": 5, "members": ["Joy Lebios", "Aireen Lebios", "Joy Matthew Lebios", "Julianna Joy Lebios", "John Matthew Lebios"]},
-      {"name": "Joy Matthew Lebios", "category": "Relative", "group": "G22", "seats": 5, "members": ["Joy Lebios", "Aireen Lebios", "Joy Matthew Lebios", "Julianna Joy Lebios", "John Matthew Lebios"]},
-      {"name": "Julianna Joy Lebios", "category": "ENT", "group": "G22", "seats": 5, "members": ["Joy Lebios", "Aireen Lebios", "Joy Matthew Lebios", "Julianna Joy Lebios", "John Matthew Lebios"]},
-      {"name": "John Matthew Lebios", "category": "Relative", "group": "G22", "seats": 5, "members": ["Joy Lebios", "Aireen Lebios", "Joy Matthew Lebios", "Julianna Joy Lebios", "John Matthew Lebios"]},
-      {"name": "Luves Belia Pasamba", "category": "Relative", "group": "G23", "seats": 6, "members": ["Luves Belia Pasamba", "Guillermo Pasamba", "Cedric Pasamba", "Ruby Legson", "Rey Legson", "Archie Legson"]},
-      {"name": "Guillermo Pasamba", "category": "Relative", "group": "G23", "seats": 6, "members": ["Luves Belia Pasamba", "Guillermo Pasamba", "Cedric Pasamba", "Ruby Legson", "Rey Legson", "Archie Legson"]},
-      {"name": "Cedric Pasamba", "category": "Relative", "group": "G23", "seats": 6, "members": ["Luves Belia Pasamba", "Guillermo Pasamba", "Cedric Pasamba", "Ruby Legson", "Rey Legson", "Archie Legson"]},
-      {"name": "Ruby Legson", "category": "Relative", "group": "G23", "seats": 6, "members": ["Luves Belia Pasamba", "Guillermo Pasamba", "Cedric Pasamba", "Ruby Legson", "Rey Legson", "Archie Legson"]},
-      {"name": "Rey Legson", "category": "Relative", "group": "G23", "seats": 6, "members": ["Luves Belia Pasamba", "Guillermo Pasamba", "Cedric Pasamba", "Ruby Legson", "Rey Legson", "Archie Legson"]},
-      {"name": "Archie Legson", "category": "Relative", "group": "G23", "seats": 6, "members": ["Luves Belia Pasamba", "Guillermo Pasamba", "Cedric Pasamba", "Ruby Legson", "Rey Legson", "Archie Legson"]},
-      {"name": "Lester Ventura", "category": "Relative", "group": "G24", "seats": 3, "members": ["Lester Ventura", "Luves Joy Ventura", "Lyvia Aztrid Ventura"]},
-      {"name": "Luves Joy Ventura", "category": "Relative", "group": "G24", "seats": 3, "members": ["Lester Ventura", "Luves Joy Ventura", "Lyvia Aztrid Ventura"]},
-      {"name": "Lyvia Aztrid Ventura", "category": "Relative", "group": "G24", "seats": 3, "members": ["Lester Ventura", "Luves Joy Ventura", "Lyvia Aztrid Ventura"]},
-      {"name": "Edgardo Jacob", "category": "FAM", "group": "G25", "seats": 3, "members": ["Edgardo Jacob", "Ma. Corazon Jacob", "Korina Jacob"]},
-      {"name": "Ma. Corazon Jacob", "category": "FAM", "group": "G25", "seats": 3, "members": ["Edgardo Jacob", "Ma. Corazon Jacob", "Korina Jacob"]},
-      {"name": "Korina Jacob", "category": "ENT", "group": "G25", "seats": 3, "members": ["Edgardo Jacob", "Ma. Corazon Jacob", "Korina Jacob"]},
-      {"name": "Henry Jacob Jr.", "category": "VIP", "group": "G26", "seats": 2, "members": ["Henry Jacob Jr.", "April Jacob"]},
-      {"name": "April Jacob", "category": "Relative", "group": "G26", "seats": 2, "members": ["Henry Jacob Jr.", "April Jacob"]},
-      {"name": "Rolando Jacob", "category": "Relative", "group": "G27", "seats": 4, "members": ["Rolando Jacob", "Marites Jacob", "Marianne Jacob", "Merlangel Jacob"]},
-      {"name": "Marites Jacob", "category": "Relative", "group": "G27", "seats": 4, "members": ["Rolando Jacob", "Marites Jacob", "Marianne Jacob", "Merlangel Jacob"]},
-      {"name": "Marianne Jacob", "category": "Relative", "group": "G27", "seats": 4, "members": ["Rolando Jacob", "Marites Jacob", "Marianne Jacob", "Merlangel Jacob"]},
-      {"name": "Merlangel Jacob", "category": "Relative", "group": "G27", "seats": 4, "members": ["Rolando Jacob", "Marites Jacob", "Marianne Jacob", "Merlangel Jacob"]},
-      {"name": "Beberly Notario", "category": "Relative", "group": "G28", "seats": 4, "members": ["Beberly Notario", "Arlino Notario", "Gerald Notario", "Girly Notario"]},
-      {"name": "Arlino Notario", "category": "Relative", "group": "G28", "seats": 4, "members": ["Beberly Notario", "Arlino Notario", "Gerald Notario", "Girly Notario"]},
-      {"name": "Gerald Notario", "category": "Relative", "group": "G28", "seats": 4, "members": ["Beberly Notario", "Arlino Notario", "Gerald Notario", "Girly Notario"]},
-      {"name": "Girly Notario", "category": "Relative", "group": "G28", "seats": 4, "members": ["Beberly Notario", "Arlino Notario", "Gerald Notario", "Girly Notario"]},
-      {"name": "Alex Jacob", "category": "Relative", "group": "G29", "seats": 2, "members": ["Alex Jacob", "Mark Anthony Jacob"]},
-      {"name": "Mark Anthony Jacob", "category": "Relative", "group": "G29", "seats": 2, "members": ["Alex Jacob", "Mark Anthony Jacob"]},
-      {"name": "Marivic Nieva", "category": "Relative", "group": "G30", "seats": 5, "members": ["Marivic Nieva", "Joy Christine Nieva", "Joevic Dave Nieva", "Joseph Quincy Nieva", "Jomarie Kenn Nieva"]},
-      {"name": "Joy Christine Nieva", "category": "Relative", "group": "G30", "seats": 5, "members": ["Marivic Nieva", "Joy Christine Nieva", "Joevic Dave Nieva", "Joseph Quincy Nieva", "Jomarie Kenn Nieva"]},
-      {"name": "Joevic Dave Nieva", "category": "Relative", "group": "G30", "seats": 5, "members": ["Marivic Nieva", "Joy Christine Nieva", "Joevic Dave Nieva", "Joseph Quincy Nieva", "Jomarie Kenn Nieva"]},
-      {"name": "Joseph Quincy Nieva", "category": "Relative", "group": "G30", "seats": 5, "members": ["Marivic Nieva", "Joy Christine Nieva", "Joevic Dave Nieva", "Joseph Quincy Nieva", "Jomarie Kenn Nieva"]},
-      {"name": "Jomarie Kenn Nieva", "category": "Relative", "group": "G30", "seats": 5, "members": ["Marivic Nieva", "Joy Christine Nieva", "Joevic Dave Nieva", "Joseph Quincy Nieva", "Jomarie Kenn Nieva"]},
-      {"name": "Victoriano Jacob Jr.", "category": "Relative", "group": "G31", "seats": 3, "members": ["Victoriano Jacob Jr.", "Amie Jacob", "Keir Johnvic Jacob"]},
-      {"name": "Amie Jacob", "category": "Relative", "group": "G31", "seats": 3, "members": ["Victoriano Jacob Jr.", "Amie Jacob", "Keir Johnvic Jacob"]},
-      {"name": "Keir Johnvic Jacob", "category": "Relative", "group": "G31", "seats": 3, "members": ["Victoriano Jacob Jr.", "Amie Jacob", "Keir Johnvic Jacob"]},
-      {"name": "Jonalyn Penilla", "category": "Relative", "group": "G32", "seats": 5, "members": ["Jonalyn Penilla", "Noe Penilla", "Jean Achilles Penilla", "Jacob Ares Penilla", "Jake Archimedes Penilla"]},
-      {"name": "Noe Penilla", "category": "Relative", "group": "G32", "seats": 5, "members": ["Jonalyn Penilla", "Noe Penilla", "Jean Achilles Penilla", "Jacob Ares Penilla", "Jake Archimedes Penilla"]},
-      {"name": "Jean Achilles Penilla", "category": "ENT", "group": "G32", "seats": 5, "members": ["Jonalyn Penilla", "Noe Penilla", "Jean Achilles Penilla", "Jacob Ares Penilla", "Jake Archimedes Penilla"]},
-      {"name": "Jacob Ares Penilla", "category": "Relative", "group": "G32", "seats": 5, "members": ["Jonalyn Penilla", "Noe Penilla", "Jean Achilles Penilla", "Jacob Ares Penilla", "Jake Archimedes Penilla"]},
-      {"name": "Jake Archimedes Penilla", "category": "ENT", "group": "G32", "seats": 5, "members": ["Jonalyn Penilla", "Noe Penilla", "Jean Achilles Penilla", "Jacob Ares Penilla", "Jake Archimedes Penilla"]},
-      {"name": "Jeffrey Palma", "category": "Relative", "group": "G33", "seats": 4, "members": ["Jeffrey Palma", "Emerose Palma", "James Froilan Palma", "Raymund Palma"]},
-      {"name": "Emerose Palma", "category": "Relative", "group": "G33", "seats": 4, "members": ["Jeffrey Palma", "Emerose Palma", "James Froilan Palma", "Raymund Palma"]},
-      {"name": "James Froilan Palma", "category": "Relative", "group": "G33", "seats": 4, "members": ["Jeffrey Palma", "Emerose Palma", "James Froilan Palma", "Raymund Palma"]},
-      {"name": "Raymund Palma", "category": "Relative", "group": "G33", "seats": 4, "members": ["Jeffrey Palma", "Emerose Palma", "James Froilan Palma", "Raymund Palma"]},
-      {"name": "Remo Mortega", "category": "Relative", "group": "G34", "seats": 6, "members": ["Remo Mortega", "Dominga Mortega", "John Paul Ian Mortega", "Antonette Mortega", "John Don Mortega", "James Cel Mortega"]},
-      {"name": "Dominga Mortega", "category": "Relative", "group": "G34", "seats": 6, "members": ["Remo Mortega", "Dominga Mortega", "John Paul Ian Mortega", "Antonette Mortega", "John Don Mortega", "James Cel Mortega"]},
-      {"name": "John Paul Ian Mortega", "category": "Relative", "group": "G34", "seats": 6, "members": ["Remo Mortega", "Dominga Mortega", "John Paul Ian Mortega", "Antonette Mortega", "John Don Mortega", "James Cel Mortega"]},
-      {"name": "Antonette Mortega", "category": "Relative", "group": "G34", "seats": 6, "members": ["Remo Mortega", "Dominga Mortega", "John Paul Ian Mortega", "Antonette Mortega", "John Don Mortega", "James Cel Mortega"]},
-      {"name": "John Don Mortega", "category": "Relative", "group": "G34", "seats": 6, "members": ["Remo Mortega", "Dominga Mortega", "John Paul Ian Mortega", "Antonette Mortega", "John Don Mortega", "James Cel Mortega"]},
-      {"name": "James Cel Mortega", "category": "Relative", "group": "G34", "seats": 6, "members": ["Remo Mortega", "Dominga Mortega", "John Paul Ian Mortega", "Antonette Mortega", "John Don Mortega", "James Cel Mortega"]},
-      {"name": "Celo Roy Mortega", "category": "Relative", "group": "G35", "seats": 4, "members": ["Celo Roy Mortega", "Daisy Mortega", "Celodonio Mortega II", "John Royce Mortega"]},
-      {"name": "Daisy Mortega", "category": "Relative", "group": "G35", "seats": 4, "members": ["Celo Roy Mortega", "Daisy Mortega", "Celodonio Mortega II", "John Royce Mortega"]},
-      {"name": "Celodonio Mortega II", "category": "Relative", "group": "G35", "seats": 4, "members": ["Celo Roy Mortega", "Daisy Mortega", "Celodonio Mortega II", "John Royce Mortega"]},
-      {"name": "John Royce Mortega", "category": "Relative", "group": "G35", "seats": 4, "members": ["Celo Roy Mortega", "Daisy Mortega", "Celodonio Mortega II", "John Royce Mortega"]},
-      {"name": "Ralph Mortega", "category": "Relative", "group": "G36", "seats": 3, "members": ["Ralph Mortega", "Maja Bianca Mortega", "Iggy Mortega"]},
-      {"name": "Maja Bianca Mortega", "category": "Relative", "group": "G36", "seats": 3, "members": ["Ralph Mortega", "Maja Bianca Mortega", "Iggy Mortega"]},
-      {"name": "Iggy Mortega", "category": "ENT", "group": "G36", "seats": 3, "members": ["Ralph Mortega", "Maja Bianca Mortega", "Iggy Mortega"]},
-      {"name": "Celso Mortega", "category": "VIP", "group": "G37", "seats": 3, "members": ["Celso Mortega", "Edel Paz Mortega", "Andrei Mortega"]},
-      {"name": "Edel Paz Mortega", "category": "Relative", "group": "G37", "seats": 3, "members": ["Celso Mortega", "Edel Paz Mortega", "Andrei Mortega"]},
-      {"name": "Andrei Mortega", "category": "Relative", "group": "G37", "seats": 3, "members": ["Celso Mortega", "Edel Paz Mortega", "Andrei Mortega"]},
-      {"name": "Emily Mina Mujar", "category": "Relative", "group": "G38", "seats": 2, "members": ["Emily Mina Mujar", "Mykael Eris Mujar"]},
-      {"name": "Mykael Eris Mujar", "category": "Relative", "group": "G38", "seats": 2, "members": ["Emily Mina Mujar", "Mykael Eris Mujar"]},
-      {"name": "Ofelia Mortega", "category": "Relative", "group": "G39", "seats": 3, "members": ["Ofelia Mortega", "Caroline Gomez", "Keith Balce"]},
-      {"name": "Caroline Gomez", "category": "ENT", "group": "G39", "seats": 3, "members": ["Ofelia Mortega", "Caroline Gomez", "Keith Balce"]},
-      {"name": "Keith Balce", "category": "Relative", "group": "G39", "seats": 3, "members": ["Ofelia Mortega", "Caroline Gomez", "Keith Balce"]},
-      {"name": "Zelda Artificio", "category": "Relative", "group": "G40", "seats": 3, "members": ["Zelda Artificio", "Katrina Monica Artificio", "Arnold Artificio"]},
-      {"name": "Katrina Monica Artificio", "category": "Relative", "group": "G40", "seats": 3, "members": ["Zelda Artificio", "Katrina Monica Artificio", "Arnold Artificio"]},
-      {"name": "Arnold Artificio", "category": "Relative", "group": "G40", "seats": 3, "members": ["Zelda Artificio", "Katrina Monica Artificio", "Arnold Artificio"]},
-      {"name": "Earl Calingacion", "category": "VIP", "group": "G41", "seats": 2, "members": ["Earl Calingacion", "Joanne May Calingacion"]},
-      {"name": "Joanne May Calingacion", "category": "VIP", "group": "G41", "seats": 2, "members": ["Earl Calingacion", "Joanne May Calingacion"]},
-      {"name": "Rocel Artiaga", "category": "VIP", "group": "G42", "seats": 1, "members": ["Rocel Artiaga"]},
-      {"name": "Karl Anthony Garcia", "category": "VIP", "group": "G43", "seats": 2, "members": ["Karl Anthony Garcia", "Sherraine Lim-Garcia"]},
-      {"name": "Sherraine Lim-Garcia", "category": "VIP", "group": "G43", "seats": 2, "members": ["Karl Anthony Garcia", "Sherraine Lim-Garcia"]},
-      {"name": "Charles Lim", "category": "Church fam", "group": "G44", "seats": 2, "members": ["Charles Lim", "Jemimah Lim"]},
-      {"name": "Jemimah Lim", "category": "Church fam", "group": "G44", "seats": 2, "members": ["Charles Lim", "Jemimah Lim"]},
-      {"name": "Jaime Felicita", "category": "Church fam", "group": "G45", "seats": 2, "members": ["Jaime Felicita", "Elexis Felicita"]},
-      {"name": "Elexis Felicita", "category": "Church fam", "group": "G45", "seats": 2, "members": ["Jaime Felicita", "Elexis Felicita"]},
-      {"name": "Jade Azupardo", "category": "Church fam", "group": "G46", "seats": 1, "members": ["Jade Azupardo"]},
-      {"name": "Ronald Abinal", "category": "VIP", "group": "G47", "seats": 2, "members": ["Ronald Abinal", "Sarah Abinal"]},
-      {"name": "Sarah Abinal", "category": "VIP", "group": "G47", "seats": 2, "members": ["Ronald Abinal", "Sarah Abinal"]},
-      {"name": "Norwil Naag", "category": "Church fam", "group": "G48", "seats": 2, "members": ["Norwil Naag", "Gwynne Naag"]},
-      {"name": "Gwynne Naag", "category": "Church fam", "group": "G48", "seats": 2, "members": ["Norwil Naag", "Gwynne Naag"]},
-      {"name": "Xenia Sepole", "category": "Church fam", "group": "G49", "seats": 4, "members": ["Xenia Sepole", "Alea Casilaso", "Eleale Sepole", "Alexander Sepole III"]},
-      {"name": "Alea Casilaso", "category": "Church fam", "group": "G49", "seats": 4, "members": ["Xenia Sepole", "Alea Casilaso", "Eleale Sepole", "Alexander Sepole III"]},
-      {"name": "Eleale Sepole", "category": "Church fam", "group": "G49", "seats": 4, "members": ["Xenia Sepole", "Alea Casilaso", "Eleale Sepole", "Alexander Sepole III"]},
-      {"name": "Alexander Sepole III", "category": "Church fam", "group": "G49", "seats": 4, "members": ["Xenia Sepole", "Alea Casilaso", "Eleale Sepole", "Alexander Sepole III"]},
-      {"name": "Jonathan Talatala", "category": "VIP", "group": "G50", "seats": 2, "members": ["Jonathan Talatala", "Jerlaine Talatala"]},
-      {"name": "Jerlaine Talatala", "category": "Church fam", "group": "G50", "seats": 2, "members": ["Jonathan Talatala", "Jerlaine Talatala"]},
-      {"name": "May Ann Belleza", "category": "Church fam", "group": "G51", "seats": 4, "members": ["May Ann Belleza", "Dave Joshua Belleza", "Davy Ann Belleza", "Jo-Ava Rain Belleza"]},
-      {"name": "Dave Joshua Belleza", "category": "Church fam", "group": "G51", "seats": 4, "members": ["May Ann Belleza", "Dave Joshua Belleza", "Davy Ann Belleza", "Jo-Ava Rain Belleza"]},
-      {"name": "Davy Ann Belleza", "category": "Church fam", "group": "G51", "seats": 4, "members": ["May Ann Belleza", "Dave Joshua Belleza", "Davy Ann Belleza", "Jo-Ava Rain Belleza"]},
-      {"name": "Jo-Ava Rain Belleza", "category": "ENT", "group": "G51", "seats": 4, "members": ["May Ann Belleza", "Dave Joshua Belleza", "Davy Ann Belleza", "Jo-Ava Rain Belleza"]},
-      {"name": "Ulysses Fundano", "category": "Church fam", "group": "G52", "seats": 2, "members": ["Ulysses Fundano", "Michelle Fundano"]},
-      {"name": "Michelle Fundano", "category": "VIP", "group": "G52", "seats": 2, "members": ["Ulysses Fundano", "Michelle Fundano"]},
-      {"name": "Dennis Roquiño", "category": "VIP", "group": "G53", "seats": 1, "members": ["Dennis Roquiño"]},
-      {"name": "Allan Nales", "category": "VIP", "group": "G54", "seats": 1, "members": ["Allan Nales"]},
-      {"name": "Ronnie Ros", "category": "VIP", "group": "G55", "seats": 2, "members": ["Ronnie Ros", "Stef Mati Ros"]},
-      {"name": "Stef Mati Ros", "category": "Church fam", "group": "G55", "seats": 2, "members": ["Ronnie Ros", "Stef Mati Ros"]},
-      {"name": "Arlene Arroz", "category": "VIP", "group": "G56", "seats": 3, "members": ["Arlene Arroz", "Alene Rod Arroz", "Rodlen Arroz"]},
-      {"name": "Alene Rod Arroz", "category": "Church fam", "group": "G56", "seats": 3, "members": ["Arlene Arroz", "Alene Rod Arroz", "Rodlen Arroz"]},
-      {"name": "Rodlen Arroz", "category": "ENT", "group": "G56", "seats": 3, "members": ["Arlene Arroz", "Alene Rod Arroz", "Rodlen Arroz"]},
-      {"name": "John Sumastre", "category": "Church fam", "group": "G57", "seats": 1, "members": ["John Sumastre"]},
-      {"name": "Elisha Mae Briobo", "category": "Church fam", "group": "G58", "seats": 2, "members": ["Elisha Mae Briobo", "Dan Jeush Briobo"]},
-      {"name": "Dan Jeush Briobo", "category": "ENT", "group": "G58", "seats": 2, "members": ["Elisha Mae Briobo", "Dan Jeush Briobo"]},
-      {"name": "Jamir Ajero", "category": "Church fam", "group": "G59", "seats": 2, "members": ["Jamir Ajero", "Jeck Aiel Ajero"]},
-      {"name": "Jeck Aiel Ajero", "category": "Church fam", "group": "G59", "seats": 2, "members": ["Jamir Ajero", "Jeck Aiel Ajero"]},
-      {"name": "Jherimae Odon", "category": "ENT", "group": "G60", "seats": 1, "members": ["Jherimae Odon"]},
-      {"name": "Harvie Languian", "category": "Church fam", "group": "G61", "seats": 3, "members": ["Harvie Languian", "Khyla Dianne Languian", "Jodenson Bartolay"]},
-      {"name": "Khyla Dianne Languian", "category": "ENT", "group": "G61", "seats": 3, "members": ["Harvie Languian", "Khyla Dianne Languian", "Jodenson Bartolay"]},
-      {"name": "Jodenson Bartolay", "category": "Church fam", "group": "G61", "seats": 3, "members": ["Harvie Languian", "Khyla Dianne Languian", "Jodenson Bartolay"]},
-      {"name": "Jhon Delos Reyes", "category": "ENT", "group": "G62", "seats": 4, "members": ["Jhon Delos Reyes", "Jessica Mae Magdasoc", "Natashia Biason", "Abegail Garcia"]},
-      {"name": "Jessica Mae Magdasoc", "category": "Church fam", "group": "G62", "seats": 4, "members": ["Jhon Delos Reyes", "Jessica Mae Magdasoc", "Natashia Biason", "Abegail Garcia"]},
-      {"name": "Natashia Biason", "category": "Church fam", "group": "G62", "seats": 4, "members": ["Jhon Delos Reyes", "Jessica Mae Magdasoc", "Natashia Biason", "Abegail Garcia"]},
-      {"name": "Abegail Garcia", "category": "Church fam", "group": "G62", "seats": 4, "members": ["Jhon Delos Reyes", "Jessica Mae Magdasoc", "Natashia Biason", "Abegail Garcia"]},
-      {"name": "Naomi Cortez", "category": "Church fam", "group": "G63", "seats": 2, "members": ["Naomi Cortez", "Vanessa Mae Aguilar"]},
-      {"name": "Vanessa Mae Aguilar", "category": "Church fam", "group": "G63", "seats": 2, "members": ["Naomi Cortez", "Vanessa Mae Aguilar"]},
-      {"name": "Tyrone Galang", "category": "ENT", "group": "G64", "seats": 3, "members": ["Tyrone Galang", "John Michael Aseneta", "John Paul Aseneta"]},
-      {"name": "John Michael Aseneta", "category": "ENT", "group": "G64", "seats": 3, "members": ["Tyrone Galang", "John Michael Aseneta", "John Paul Aseneta"]},
-      {"name": "John Paul Aseneta", "category": "Church fam", "group": "G64", "seats": 3, "members": ["Tyrone Galang", "John Michael Aseneta", "John Paul Aseneta"]},
-      {"name": "Rafael Siso", "category": "ENT", "group": "G65", "seats": 2, "members": ["Rafael Siso", "Michelle Anne Siso"]},
-      {"name": "Michelle Anne Siso", "category": "Church fam", "group": "G65", "seats": 2, "members": ["Rafael Siso", "Michelle Anne Siso"]},
-      {"name": "Joseph Ian Mendaros", "category": "ENT", "group": "G66", "seats": 5, "members": ["Joseph Ian Mendaros", "Rod Lemuel Dedase", "Jotham John Diaz", "Lancelot Reyeg", "Jhobert Baquisal"]},
-      {"name": "Rod Lemuel Dedase", "category": "ENT", "group": "G66", "seats": 5, "members": ["Joseph Ian Mendaros", "Rod Lemuel Dedase", "Jotham John Diaz", "Lancelot Reyeg", "Jhobert Baquisal"]},
-      {"name": "Jotham John Diaz", "category": "ENT", "group": "G66", "seats": 5, "members": ["Joseph Ian Mendaros", "Rod Lemuel Dedase", "Jotham John Diaz", "Lancelot Reyeg", "Jhobert Baquisal"]},
-      {"name": "Lancelot Reyeg", "category": "ENT", "group": "G66", "seats": 5, "members": ["Joseph Ian Mendaros", "Rod Lemuel Dedase", "Jotham John Diaz", "Lancelot Reyeg", "Jhobert Baquisal"]},
-      {"name": "Jhobert Baquisal", "category": "Friends", "group": "G66", "seats": 5, "members": ["Joseph Ian Mendaros", "Rod Lemuel Dedase", "Jotham John Diaz", "Lancelot Reyeg", "Jhobert Baquisal"]},
-      {"name": "Angelo Fesalbon", "category": "Friends", "group": "G67", "seats": 6, "members": ["Angelo Fesalbon", "Leo Samuel Locsin", "Clarke Kent Tejada", "Giraud Vinz Balgemino", "Wenard Sean Almayda", "Aaron Florentino Borbe"]},
-      {"name": "Leo Samuel Locsin", "category": "Friends", "group": "G67", "seats": 6, "members": ["Angelo Fesalbon", "Leo Samuel Locsin", "Clarke Kent Tejada", "Giraud Vinz Balgemino", "Wenard Sean Almayda", "Aaron Florentino Borbe"]},
-      {"name": "Clarke Kent Tejada", "category": "Friends", "group": "G67", "seats": 6, "members": ["Angelo Fesalbon", "Leo Samuel Locsin", "Clarke Kent Tejada", "Giraud Vinz Balgemino", "Wenard Sean Almayda", "Aaron Florentino Borbe"]},
-      {"name": "Giraud Vinz Balgemino", "category": "Friends", "group": "G67", "seats": 6, "members": ["Angelo Fesalbon", "Leo Samuel Locsin", "Clarke Kent Tejada", "Giraud Vinz Balgemino", "Wenard Sean Almayda", "Aaron Florentino Borbe"]},
-      {"name": "Wenard Sean Almayda", "category": "Friends", "group": "G67", "seats": 6, "members": ["Angelo Fesalbon", "Leo Samuel Locsin", "Clarke Kent Tejada", "Giraud Vinz Balgemino", "Wenard Sean Almayda", "Aaron Florentino Borbe"]},
-      {"name": "Aaron Florentino Borbe", "category": "Friends", "group": "G67", "seats": 6, "members": ["Angelo Fesalbon", "Leo Samuel Locsin", "Clarke Kent Tejada", "Giraud Vinz Balgemino", "Wenard Sean Almayda", "Aaron Florentino Borbe"]},
-      {"name": "Al Francis Asuncion", "category": "Friends", "group": "G68", "seats": 6, "members": ["Al Francis Asuncion", "John Alex Ganalon", "Kelvin Joshua De Belen", "Ervin Llana", "Emmanuel Justin Barnuevo", "Karlo Millena"]},
-      {"name": "John Alex Ganalon", "category": "Friends", "group": "G68", "seats": 6, "members": ["Al Francis Asuncion", "John Alex Ganalon", "Kelvin Joshua De Belen", "Ervin Llana", "Emmanuel Justin Barnuevo", "Karlo Millena"]},
-      {"name": "Kelvin Joshua De Belen", "category": "Friends", "group": "G68", "seats": 6, "members": ["Al Francis Asuncion", "John Alex Ganalon", "Kelvin Joshua De Belen", "Ervin Llana", "Emmanuel Justin Barnuevo", "Karlo Millena"]},
-      {"name": "Ervin Llana", "category": "Friends", "group": "G68", "seats": 6, "members": ["Al Francis Asuncion", "John Alex Ganalon", "Kelvin Joshua De Belen", "Ervin Llana", "Emmanuel Justin Barnuevo", "Karlo Millena"]},
-      {"name": "Emmanuel Justin Barnuevo", "category": "Friends", "group": "G68", "seats": 6, "members": ["Al Francis Asuncion", "John Alex Ganalon", "Kelvin Joshua De Belen", "Ervin Llana", "Emmanuel Justin Barnuevo", "Karlo Millena"]},
-      {"name": "Karlo Millena", "category": "Friends", "group": "G68", "seats": 6, "members": ["Al Francis Asuncion", "John Alex Ganalon", "Kelvin Joshua De Belen", "Ervin Llana", "Emmanuel Justin Barnuevo", "Karlo Millena"]},
-      {"name": "Armie Ruth Beltran", "category": "Friends", "group": "G69", "seats": 2, "members": ["Armie Ruth Beltran", "Mariz Orlanda"]},
-      {"name": "Mariz Orlanda", "category": "Friends", "group": "G69", "seats": 2, "members": ["Armie Ruth Beltran", "Mariz Orlanda"]},
-      {"name": "Mae Arandia", "category": "Friends", "group": "G70", "seats": 1, "members": ["Mae Arandia"]},
-      {"name": "Luren Funes", "category": "Friends", "group": "G71", "seats": 3, "members": ["Luren Funes", "Carlo Estor", "Alliah Nicole Castillo"]},
-      {"name": "Carlo Estor", "category": "Friends", "group": "G71", "seats": 3, "members": ["Luren Funes", "Carlo Estor", "Alliah Nicole Castillo"]},
-      {"name": "Alliah Nicole Castillo", "category": "Friends", "group": "G71", "seats": 3, "members": ["Luren Funes", "Carlo Estor", "Alliah Nicole Castillo"]},
-      {"name": "Rene Christian Camposano", "category": "Friends", "group": "G72", "seats": 2, "members": ["Rene Christian Camposano", "Ailene Joi Ozaeta"]},
-      {"name": "Ailene Joi Ozaeta", "category": "Friends", "group": "G72", "seats": 2, "members": ["Rene Christian Camposano", "Ailene Joi Ozaeta"]},
-      {"name": "Beverly Serrano Bilbao", "category": "Family friend", "group": "G73", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
-      {"name": "Esther Padilla Rivera", "category": "Family friend", "group": "G73", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
-      {"name": "Sherry Javier", "category": "Family friend", "group": "G73", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
-      {"name": "Katherine Dolot", "category": "Family friend", "group": "G73", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
-      {"name": "Marie Quisumbing", "category": "Family friend", "group": "G73", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
-      {"name": "Madeline Rañola", "category": "Family friend", "group": "G73", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
-      {"name": "Emily Bañares Basbas", "category": "Family friend", "group": "G73", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
-      {"name": "Lilian Madrigalejos", "category": "Family friend", "group": "G74", "seats": 4, "members": ["Lilian Madrigalejos", "Geraldine Pacardo", "Edwin Manjares", "Joanne Morales"]},
-      {"name": "Geraldine Pacardo", "category": "Family friend", "group": "G74", "seats": 4, "members": ["Lilian Madrigalejos", "Geraldine Pacardo", "Edwin Manjares", "Joanne Morales"]},
-      {"name": "Edwin Manjares", "category": "Family friend", "group": "G74", "seats": 4, "members": ["Lilian Madrigalejos", "Geraldine Pacardo", "Edwin Manjares", "Joanne Morales"]},
-      {"name": "Joanne Morales", "category": "Family friend", "group": "G74", "seats": 4, "members": ["Lilian Madrigalejos", "Geraldine Pacardo", "Edwin Manjares", "Joanne Morales"]},
-      {"name": "Margie Llagas", "category": "Family friend", "group": "G75", "seats": 3, "members": ["Margie Llagas", "Ohyes Añon", "Analiza Adel"]},
-      {"name": "Ohyes Añon", "category": "Family friend", "group": "G75", "seats": 3, "members": ["Margie Llagas", "Ohyes Añon", "Analiza Adel"]},
-      {"name": "Analiza Adel", "category": "Family friend", "group": "G75", "seats": 3, "members": ["Margie Llagas", "Ohyes Añon", "Analiza Adel"]},
-      {"name": "Myk Xavier Albao", "category": "Co-worker", "group": "G76", "seats": 6, "members": ["Myk Xavier Albao", "Maria Elizabeth Almero-Albao", "Melanie Aurie Arevalo", "Karl Angelo Biag", "Denzel Ethan Cea", "Joan Velasco"]},
-      {"name": "Maria Elizabeth Almero-Albao", "category": "Co-worker", "group": "G76", "seats": 6, "members": ["Myk Xavier Albao", "Maria Elizabeth Almero-Albao", "Melanie Aurie Arevalo", "Karl Angelo Biag", "Denzel Ethan Cea", "Joan Velasco"]},
-      {"name": "Melanie Aurie Arevalo", "category": "Co-worker", "group": "G76", "seats": 6, "members": ["Myk Xavier Albao", "Maria Elizabeth Almero-Albao", "Melanie Aurie Arevalo", "Karl Angelo Biag", "Denzel Ethan Cea", "Joan Velasco"]},
-      {"name": "Karl Angelo Biag", "category": "Co-worker", "group": "G76", "seats": 6, "members": ["Myk Xavier Albao", "Maria Elizabeth Almero-Albao", "Melanie Aurie Arevalo", "Karl Angelo Biag", "Denzel Ethan Cea", "Joan Velasco"]},
-      {"name": "Denzel Ethan Cea", "category": "Co-worker", "group": "G76", "seats": 6, "members": ["Myk Xavier Albao", "Maria Elizabeth Almero-Albao", "Melanie Aurie Arevalo", "Karl Angelo Biag", "Denzel Ethan Cea", "Joan Velasco"]},
-      {"name": "Joan Velasco", "category": "Co-worker", "group": "G76", "seats": 6, "members": ["Myk Xavier Albao", "Maria Elizabeth Almero-Albao", "Melanie Aurie Arevalo", "Karl Angelo Biag", "Denzel Ethan Cea", "Joan Velasco"]}
-    ];
+   // ================= GUEST LIST (embedded — no database) =================
+// Updated from guestlist (1).xlsx
+// Each entry = one guest. Members in the same "group" share one invitation.
+const GUEST_LIST = [
+  // ---- Couple ----
+  {"name": "Groom - Mark Nikko Jacob", "category": "FAM", "group": "S-Groom", "seats": 1, "members": ["Groom - Mark Nikko Jacob"]},
+  {"name": "Bride - Roselle Ann Legson", "category": "FAM", "group": "S-Bride", "seats": 1, "members": ["Bride - Roselle Ann Legson"]},
+
+  // ---- Group 1 ----
+  {"name": "Roger Legson", "category": "FAM", "group": "G01", "seats": 4, "members": ["Roger Legson", "Lilian Legson", "Roger Ian Legson", "Roger Legson Jr."]},
+  {"name": "Lilian Legson", "category": "FAM", "group": "G01", "seats": 4, "members": ["Roger Legson", "Lilian Legson", "Roger Ian Legson", "Roger Legson Jr."]},
+  {"name": "Roger Ian Legson", "category": "ENT", "group": "G01", "seats": 4, "members": ["Roger Legson", "Lilian Legson", "Roger Ian Legson", "Roger Legson Jr."]},
+  {"name": "Roger Legson Jr.", "category": "ENT", "group": "G01", "seats": 4, "members": ["Roger Legson", "Lilian Legson", "Roger Ian Legson", "Roger Legson Jr."]},
+
+  // ---- Group 2 ----
+  {"name": "Jean Luces", "category": "Relative", "group": "G02", "seats": 2, "members": ["Jean Luces", "Amelia Luces"]},
+  {"name": "Amelia Luces", "category": "Relative", "group": "G02", "seats": 2, "members": ["Jean Luces", "Amelia Luces"]},
+
+  // ---- Group 3 ----
+  {"name": "Angelica Sacapaño", "category": "ENT", "group": "G03", "seats": 3, "members": ["Angelica Sacapaño", "Ma. Christelle Jaucian", "Abegail Miranda"]},
+  {"name": "Ma. Christelle Jaucian", "category": "ENT", "group": "G03", "seats": 3, "members": ["Angelica Sacapaño", "Ma. Christelle Jaucian", "Abegail Miranda"]},
+  {"name": "Abegail Miranda", "category": "ENT", "group": "G03", "seats": 3, "members": ["Angelica Sacapaño", "Ma. Christelle Jaucian", "Abegail Miranda"]},
+
+  // ---- Group 4 ----
+  {"name": "Frances Margaret Borja", "category": "Friends", "group": "G04", "seats": 5, "members": ["Frances Margaret Borja", "Dalen Mari Guillermo", "Dwight Martin Camacho", "Ann Cyline Competente", "Ethan Jacob Belarmino"]},
+  {"name": "Dalen Mari Guillermo", "category": "Friends", "group": "G04", "seats": 5, "members": ["Frances Margaret Borja", "Dalen Mari Guillermo", "Dwight Martin Camacho", "Ann Cyline Competente", "Ethan Jacob Belarmino"]},
+  {"name": "Dwight Martin Camacho", "category": "Friends", "group": "G04", "seats": 5, "members": ["Frances Margaret Borja", "Dalen Mari Guillermo", "Dwight Martin Camacho", "Ann Cyline Competente", "Ethan Jacob Belarmino"]},
+  {"name": "Ann Cyline Competente", "category": "Friends", "group": "G04", "seats": 5, "members": ["Frances Margaret Borja", "Dalen Mari Guillermo", "Dwight Martin Camacho", "Ann Cyline Competente", "Ethan Jacob Belarmino"]},
+  {"name": "Ethan Jacob Belarmino", "category": "Friends", "group": "G04", "seats": 5, "members": ["Frances Margaret Borja", "Dalen Mari Guillermo", "Dwight Martin Camacho", "Ann Cyline Competente", "Ethan Jacob Belarmino"]},
+
+  // ---- Group 5 ----
+  {"name": "Maricon Balilla", "category": "ENT", "group": "G05", "seats": 5, "members": ["Maricon Balilla", "Abbey Gale Bandola", "Shaznay Alliah Reales", "Tracy Dianne Cua", "Inez Cecilia Nocedo"]},
+  {"name": "Abbey Gale Bandola", "category": "ENT", "group": "G05", "seats": 5, "members": ["Maricon Balilla", "Abbey Gale Bandola", "Shaznay Alliah Reales", "Tracy Dianne Cua", "Inez Cecilia Nocedo"]},
+  {"name": "Shaznay Alliah Reales", "category": "Friends", "group": "G05", "seats": 5, "members": ["Maricon Balilla", "Abbey Gale Bandola", "Shaznay Alliah Reales", "Tracy Dianne Cua", "Inez Cecilia Nocedo"]},
+  {"name": "Tracy Dianne Cua", "category": "Friends", "group": "G05", "seats": 5, "members": ["Maricon Balilla", "Abbey Gale Bandola", "Shaznay Alliah Reales", "Tracy Dianne Cua", "Inez Cecilia Nocedo"]},
+  {"name": "Inez Cecilia Nocedo", "category": "Friends", "group": "G05", "seats": 5, "members": ["Maricon Balilla", "Abbey Gale Bandola", "Shaznay Alliah Reales", "Tracy Dianne Cua", "Inez Cecilia Nocedo"]},
+
+  // ---- Group 6 ----
+  {"name": "Margaret Kent Villame", "category": "Friends", "group": "G06", "seats": 2, "members": ["Margaret Kent Villame", "Leslie Joy Rastrullo"]},
+  {"name": "Leslie Joy Rastrullo", "category": "Friends", "group": "G06", "seats": 2, "members": ["Margaret Kent Villame", "Leslie Joy Rastrullo"]},
+
+  // ---- Group 7 ----
+  {"name": "Ronnie Misolas", "category": "Relative", "group": "G07", "seats": 2, "members": ["Ronnie Misolas", "Richelna Misolas"]},
+  {"name": "Richelna Misolas", "category": "Relative", "group": "G07", "seats": 2, "members": ["Ronnie Misolas", "Richelna Misolas"]},
+
+  // ---- Group 8 ----
+  {"name": "Baberose Luces", "category": "VIP", "group": "G08", "seats": 2, "members": ["Baberose Luces", "Eliza Nicole Luces"]},
+  {"name": "Eliza Nicole Luces", "category": "ENT", "group": "G08", "seats": 2, "members": ["Baberose Luces", "Eliza Nicole Luces"]},
+
+  // ---- Group 9 ----
+  {"name": "Marissa Luces", "category": "VIP", "group": "G09", "seats": 3, "members": ["Marissa Luces", "Dominique Isabelle Luces", "Denise Luces"]},
+  {"name": "Dominique Isabelle Luces", "category": "Relative", "group": "G09", "seats": 3, "members": ["Marissa Luces", "Dominique Isabelle Luces", "Denise Luces"]},
+  {"name": "Denise Luces", "category": "ENT", "group": "G09", "seats": 3, "members": ["Marissa Luces", "Dominique Isabelle Luces", "Denise Luces"]},
+
+  // ---- Group 10 ----
+  {"name": "Regino Luces Jr", "category": "Relative", "group": "G10", "seats": 5, "members": ["Regino Luces Jr", "Saturnina Luces", "Angel Fatima Luces", "Regino Margarito Luces", "Carl Jones Luces"]},
+  {"name": "Saturnina Luces", "category": "Relative", "group": "G10", "seats": 5, "members": ["Regino Luces Jr", "Saturnina Luces", "Angel Fatima Luces", "Regino Margarito Luces", "Carl Jones Luces"]},
+  {"name": "Angel Fatima Luces", "category": "ENT", "group": "G10", "seats": 5, "members": ["Regino Luces Jr", "Saturnina Luces", "Angel Fatima Luces", "Regino Margarito Luces", "Carl Jones Luces"]},
+  {"name": "Regino Margarito Luces", "category": "ENT", "group": "G10", "seats": 5, "members": ["Regino Luces Jr", "Saturnina Luces", "Angel Fatima Luces", "Regino Margarito Luces", "Carl Jones Luces"]},
+  {"name": "Carl Jones Luces", "category": "Relative", "group": "G10", "seats": 5, "members": ["Regino Luces Jr", "Saturnina Luces", "Angel Fatima Luces", "Regino Margarito Luces", "Carl Jones Luces"]},
+
+  // ---- Group 11 ----
+  {"name": "Joanna Mae Bondoc", "category": "Relative", "group": "G11", "seats": 2, "members": ["Joanna Mae Bondoc", "Gian Bondoc"]},
+  {"name": "Gian Bondoc", "category": "Relative", "group": "G11", "seats": 2, "members": ["Joanna Mae Bondoc", "Gian Bondoc"]},
+
+  // ---- Group 12 ----
+  {"name": "Nathaniel Alcera", "category": "Family friend", "group": "G12", "seats": 3, "members": ["Nathaniel Alcera", "Cielo Alcera", "Daniel Joseph Alcera"]},
+  {"name": "Cielo Alcera", "category": "Family friend", "group": "G12", "seats": 3, "members": ["Nathaniel Alcera", "Cielo Alcera", "Daniel Joseph Alcera"]},
+  {"name": "Daniel Joseph Alcera", "category": "Family friend", "group": "G12", "seats": 3, "members": ["Nathaniel Alcera", "Cielo Alcera", "Daniel Joseph Alcera"]},
+
+  // ---- Group 13 ----
+  {"name": "Frank Lagatuz", "category": "Family friend", "group": "G13", "seats": 3, "members": ["Frank Lagatuz", "Lorile Paliza", "Marc Aurelle Paliza"]},
+  {"name": "Lorile Paliza", "category": "Family friend", "group": "G13", "seats": 3, "members": ["Frank Lagatuz", "Lorile Paliza", "Marc Aurelle Paliza"]},
+  {"name": "Marc Aurelle Paliza", "category": "Family friend", "group": "G13", "seats": 3, "members": ["Frank Lagatuz", "Lorile Paliza", "Marc Aurelle Paliza"]},
+
+  // ---- Group 14 ----
+  {"name": "Merle Adra", "category": "Family friend", "group": "G14", "seats": 3, "members": ["Merle Adra", "Alyssa Merl Adra", "Lenie Lozares"]},
+  {"name": "Alyssa Merl Adra", "category": "Family friend", "group": "G14", "seats": 3, "members": ["Merle Adra", "Alyssa Merl Adra", "Lenie Lozares"]},
+  {"name": "Lenie Lozares", "category": "Family friend", "group": "G14", "seats": 3, "members": ["Merle Adra", "Alyssa Merl Adra", "Lenie Lozares"]},
+
+  // ---- Group 15 ----
+  {"name": "Carlos Bon", "category": "Family friend", "group": "G15", "seats": 2, "members": ["Carlos Bon", "Lilia Bon"]},
+  {"name": "Lilia Bon", "category": "Family friend", "group": "G15", "seats": 2, "members": ["Carlos Bon", "Lilia Bon"]},
+
+  // ---- Group 16 ----
+  {"name": "Louie Domalaon", "category": "Family friend", "group": "G16", "seats": 4, "members": ["Louie Domalaon", "Rica Domalaon", "Lorie Jae Domalaon"]},
+  {"name": "Rica Domalaon", "category": "VIP", "group": "G16", "seats": 4, "members": ["Louie Domalaon", "Rica Domalaon", "Lorie Jae Domalaon"]},
+  {"name": "Lorie Jae Domalaon", "category": "Family friend", "group": "G16", "seats": 4, "members": ["Louie Domalaon", "Rica Domalaon", "Lorie Jae Domalaon"]},
+
+  // ---- Group 17 ----
+  {"name": "Lawrenz Josh Domalaon", "category": "Family friend", "group": "G17", "seats": 1, "members": ["Lawrenz Josh Domalaon"]},
+
+  // ---- Group 18 ----
+  {"name": "Helen Llanera", "category": "Family friend", "group": "G18", "seats": 1, "members": ["Helen Llanera"]},
+
+  // ---- Group 19 ----
+  {"name": "Renee Legson", "category": "Relative", "group": "G19", "seats": 3, "members": ["Renee Legson", "Lilia Legson", "Karen Legson"]},
+  {"name": "Lilia Legson", "category": "Relative", "group": "G19", "seats": 3, "members": ["Renee Legson", "Lilia Legson", "Karen Legson"]},
+  {"name": "Karen Legson", "category": "ENT", "group": "G19", "seats": 3, "members": ["Renee Legson", "Lilia Legson", "Karen Legson"]},
+
+  // ---- Group 20 ----
+  {"name": "Ryan Legson", "category": "Relative", "group": "G20", "seats": 4, "members": ["Ryan Legson", "Irene Legson", "Camille Legson", "Gian Legson"]},
+  {"name": "Irene Legson", "category": "Relative", "group": "G20", "seats": 4, "members": ["Ryan Legson", "Irene Legson", "Camille Legson", "Gian Legson"]},
+  {"name": "Camille Legson", "category": "ENT", "group": "G20", "seats": 4, "members": ["Ryan Legson", "Irene Legson", "Camille Legson", "Gian Legson"]},
+  {"name": "Gian Legson", "category": "Relative", "group": "G20", "seats": 4, "members": ["Ryan Legson", "Irene Legson", "Camille Legson", "Gian Legson"]},
+
+  // ---- Group 21 ----
+  {"name": "Francis Medalla Jr.", "category": "VIP", "group": "G21", "seats": 5, "members": ["Francis Medalla Jr.", "Annabel Medalla", "Francis Ken Medalla", "Francis Allain Medalla", "Francis Gabriel Medalla"]},
+  {"name": "Annabel Medalla", "category": "VIP", "group": "G21", "seats": 5, "members": ["Francis Medalla Jr.", "Annabel Medalla", "Francis Ken Medalla", "Francis Allain Medalla", "Francis Gabriel Medalla"]},
+  {"name": "Francis Ken Medalla", "category": "Relative", "group": "G21", "seats": 5, "members": ["Francis Medalla Jr.", "Annabel Medalla", "Francis Ken Medalla", "Francis Allain Medalla", "Francis Gabriel Medalla"]},
+  {"name": "Francis Allain Medalla", "category": "ENT", "group": "G21", "seats": 5, "members": ["Francis Medalla Jr.", "Annabel Medalla", "Francis Ken Medalla", "Francis Allain Medalla", "Francis Gabriel Medalla"]},
+  {"name": "Francis Gabriel Medalla", "category": "Relative", "group": "G21", "seats": 5, "members": ["Francis Medalla Jr.", "Annabel Medalla", "Francis Ken Medalla", "Francis Allain Medalla", "Francis Gabriel Medalla"]},
+
+  // ---- Group 22 ----
+  {"name": "Raul Legson", "category": "Relative", "group": "G22", "seats": 5, "members": ["Raul Legson", "Cristina Legson", "Anthony Rei Legson", "Bea Kristine Legson", "Kristian Legson"]},
+  {"name": "Cristina Legson", "category": "Relative", "group": "G22", "seats": 5, "members": ["Raul Legson", "Cristina Legson", "Anthony Rei Legson", "Bea Kristine Legson", "Kristian Legson"]},
+  {"name": "Anthony Rei Legson", "category": "Relative", "group": "G22", "seats": 5, "members": ["Raul Legson", "Cristina Legson", "Anthony Rei Legson", "Bea Kristine Legson", "Kristian Legson"]},
+  {"name": "Bea Kristine Legson", "category": "Relative", "group": "G22", "seats": 5, "members": ["Raul Legson", "Cristina Legson", "Anthony Rei Legson", "Bea Kristine Legson", "Kristian Legson"]},
+  {"name": "Kristian Legson", "category": "Relative", "group": "G22", "seats": 5, "members": ["Raul Legson", "Cristina Legson", "Anthony Rei Legson", "Bea Kristine Legson", "Kristian Legson"]},
+
+  // ---- Group 23 ----
+  {"name": "Joy Lebios", "category": "Relative", "group": "G23", "seats": 5, "members": ["Joy Lebios", "Aireen Lebios", "Joy Matthew Lebios", "Julianna Joy Lebios", "John Matthew Lebios"]},
+  {"name": "Aireen Lebios", "category": "Relative", "group": "G23", "seats": 5, "members": ["Joy Lebios", "Aireen Lebios", "Joy Matthew Lebios", "Julianna Joy Lebios", "John Matthew Lebios"]},
+  {"name": "Joy Matthew Lebios", "category": "Relative", "group": "G23", "seats": 5, "members": ["Joy Lebios", "Aireen Lebios", "Joy Matthew Lebios", "Julianna Joy Lebios", "John Matthew Lebios"]},
+  {"name": "Julianna Joy Lebios", "category": "ENT", "group": "G23", "seats": 5, "members": ["Joy Lebios", "Aireen Lebios", "Joy Matthew Lebios", "Julianna Joy Lebios", "John Matthew Lebios"]},
+  {"name": "John Matthew Lebios", "category": "Relative", "group": "G23", "seats": 5, "members": ["Joy Lebios", "Aireen Lebios", "Joy Matthew Lebios", "Julianna Joy Lebios", "John Matthew Lebios"]},
+
+  // ---- Group 24 ----
+  {"name": "Luves Belia Pasamba", "category": "Relative", "group": "G24", "seats": 6, "members": ["Luves Belia Pasamba", "Guillermo Pasamba", "Cedric Pasamba", "Ruby Legson", "Rey Legson", "Archie Legson"]},
+  {"name": "Guillermo Pasamba", "category": "Relative", "group": "G24", "seats": 6, "members": ["Luves Belia Pasamba", "Guillermo Pasamba", "Cedric Pasamba", "Ruby Legson", "Rey Legson", "Archie Legson"]},
+  {"name": "Cedric Pasamba", "category": "Relative", "group": "G24", "seats": 6, "members": ["Luves Belia Pasamba", "Guillermo Pasamba", "Cedric Pasamba", "Ruby Legson", "Rey Legson", "Archie Legson"]},
+  {"name": "Ruby Legson", "category": "Relative", "group": "G24", "seats": 6, "members": ["Luves Belia Pasamba", "Guillermo Pasamba", "Cedric Pasamba", "Ruby Legson", "Rey Legson", "Archie Legson"]},
+  {"name": "Rey Legson", "category": "Relative", "group": "G24", "seats": 6, "members": ["Luves Belia Pasamba", "Guillermo Pasamba", "Cedric Pasamba", "Ruby Legson", "Rey Legson", "Archie Legson"]},
+  {"name": "Archie Legson", "category": "Relative", "group": "G24", "seats": 6, "members": ["Luves Belia Pasamba", "Guillermo Pasamba", "Cedric Pasamba", "Ruby Legson", "Rey Legson", "Archie Legson"]},
+
+  // ---- Group 25 ----
+  {"name": "Lester Ventura", "category": "Relative", "group": "G25", "seats": 3, "members": ["Lester Ventura", "Luves Joy Ventura", "Lyvia Aztrid Ventura"]},
+  {"name": "Luves Joy Ventura", "category": "Relative", "group": "G25", "seats": 3, "members": ["Lester Ventura", "Luves Joy Ventura", "Lyvia Aztrid Ventura"]},
+  {"name": "Lyvia Aztrid Ventura", "category": "Relative", "group": "G25", "seats": 3, "members": ["Lester Ventura", "Luves Joy Ventura", "Lyvia Aztrid Ventura"]},
+
+  // ---- Group 26 ----
+  {"name": "Edgardo Jacob", "category": "FAM", "group": "G26", "seats": 3, "members": ["Edgardo Jacob", "Ma. Corazon Jacob", "Korina Jacob"]},
+  {"name": "Ma. Corazon Jacob", "category": "FAM", "group": "G26", "seats": 3, "members": ["Edgardo Jacob", "Ma. Corazon Jacob", "Korina Jacob"]},
+  {"name": "Korina Jacob", "category": "ENT", "group": "G26", "seats": 3, "members": ["Edgardo Jacob", "Ma. Corazon Jacob", "Korina Jacob"]},
+
+  // ---- Group 27 ----
+  {"name": "Henry Jacob Jr.", "category": "VIP", "group": "G27", "seats": 2, "members": ["Henry Jacob Jr.", "April Jacob"]},
+  {"name": "April Jacob", "category": "Relative", "group": "G27", "seats": 2, "members": ["Henry Jacob Jr.", "April Jacob"]},
+
+  // ---- Group 28 ----
+  {"name": "Rolando Jacob", "category": "Relative", "group": "G28", "seats": 4, "members": ["Rolando Jacob", "Marites Jacob", "Marianne Jacob", "Merlangel Jacob"]},
+  {"name": "Marites Jacob", "category": "Relative", "group": "G28", "seats": 4, "members": ["Rolando Jacob", "Marites Jacob", "Marianne Jacob", "Merlangel Jacob"]},
+  {"name": "Marianne Jacob", "category": "Relative", "group": "G28", "seats": 4, "members": ["Rolando Jacob", "Marites Jacob", "Marianne Jacob", "Merlangel Jacob"]},
+  {"name": "Merlangel Jacob", "category": "Relative", "group": "G28", "seats": 4, "members": ["Rolando Jacob", "Marites Jacob", "Marianne Jacob", "Merlangel Jacob"]},
+
+  // ---- Group 29 ----
+  {"name": "Beberly Notario", "category": "Relative", "group": "G29", "seats": 4, "members": ["Beberly Notario", "Arlino Notario", "Gerald Notario", "Girly Notario"]},
+  {"name": "Arlino Notario", "category": "Relative", "group": "G29", "seats": 4, "members": ["Beberly Notario", "Arlino Notario", "Gerald Notario", "Girly Notario"]},
+  {"name": "Gerald Notario", "category": "Relative", "group": "G29", "seats": 4, "members": ["Beberly Notario", "Arlino Notario", "Gerald Notario", "Girly Notario"]},
+  {"name": "Girly Notario", "category": "Relative", "group": "G29", "seats": 4, "members": ["Beberly Notario", "Arlino Notario", "Gerald Notario", "Girly Notario"]},
+
+  // ---- Group 30 ----
+  {"name": "Alex Jacob", "category": "Relative", "group": "G30", "seats": 2, "members": ["Alex Jacob", "Mark Anthony Jacob"]},
+  {"name": "Mark Anthony Jacob", "category": "Relative", "group": "G30", "seats": 2, "members": ["Alex Jacob", "Mark Anthony Jacob"]},
+
+  // ---- Group 31 ----
+  {"name": "Marivic Nieva", "category": "Relative", "group": "G31", "seats": 5, "members": ["Marivic Nieva", "Joy Christine Nieva", "Joevic Dave Nieva", "Joseph Quincy Nieva", "Jomarie Kenn Nieva"]},
+  {"name": "Joy Christine Nieva", "category": "Relative", "group": "G31", "seats": 5, "members": ["Marivic Nieva", "Joy Christine Nieva", "Joevic Dave Nieva", "Joseph Quincy Nieva", "Jomarie Kenn Nieva"]},
+  {"name": "Joevic Dave Nieva", "category": "Relative", "group": "G31", "seats": 5, "members": ["Marivic Nieva", "Joy Christine Nieva", "Joevic Dave Nieva", "Joseph Quincy Nieva", "Jomarie Kenn Nieva"]},
+  {"name": "Joseph Quincy Nieva", "category": "Relative", "group": "G31", "seats": 5, "members": ["Marivic Nieva", "Joy Christine Nieva", "Joevic Dave Nieva", "Joseph Quincy Nieva", "Jomarie Kenn Nieva"]},
+  {"name": "Jomarie Kenn Nieva", "category": "Relative", "group": "G31", "seats": 5, "members": ["Marivic Nieva", "Joy Christine Nieva", "Joevic Dave Nieva", "Joseph Quincy Nieva", "Jomarie Kenn Nieva"]},
+
+  // ---- Group 32 ----
+  {"name": "Victoriano Jacob Jr.", "category": "Relative", "group": "G32", "seats": 3, "members": ["Victoriano Jacob Jr.", "Amie Jacob", "Keir Johnvic Jacob"]},
+  {"name": "Amie Jacob", "category": "Relative", "group": "G32", "seats": 3, "members": ["Victoriano Jacob Jr.", "Amie Jacob", "Keir Johnvic Jacob"]},
+  {"name": "Keir Johnvic Jacob", "category": "Relative", "group": "G32", "seats": 3, "members": ["Victoriano Jacob Jr.", "Amie Jacob", "Keir Johnvic Jacob"]},
+
+  // ---- Group 33 ----
+  {"name": "Jonalyn Penilla", "category": "Relative", "group": "G33", "seats": 5, "members": ["Jonalyn Penilla", "Noe Penilla", "Jean Achilles Penilla", "Jacob Ares Penilla", "Jake Archimedes Penilla"]},
+  {"name": "Noe Penilla", "category": "Relative", "group": "G33", "seats": 5, "members": ["Jonalyn Penilla", "Noe Penilla", "Jean Achilles Penilla", "Jacob Ares Penilla", "Jake Archimedes Penilla"]},
+  {"name": "Jean Achilles Penilla", "category": "ENT", "group": "G33", "seats": 5, "members": ["Jonalyn Penilla", "Noe Penilla", "Jean Achilles Penilla", "Jacob Ares Penilla", "Jake Archimedes Penilla"]},
+  {"name": "Jacob Ares Penilla", "category": "Relative", "group": "G33", "seats": 5, "members": ["Jonalyn Penilla", "Noe Penilla", "Jean Achilles Penilla", "Jacob Ares Penilla", "Jake Archimedes Penilla"]},
+  {"name": "Jake Archimedes Penilla", "category": "ENT", "group": "G33", "seats": 5, "members": ["Jonalyn Penilla", "Noe Penilla", "Jean Achilles Penilla", "Jacob Ares Penilla", "Jake Archimedes Penilla"]},
+
+  // ---- Group 34 ----
+  {"name": "Jeffrey Palma", "category": "Relative", "group": "G34", "seats": 4, "members": ["Jeffrey Palma", "Emerose Palma", "James Froilan Palma", "Raymund Palma"]},
+  {"name": "Emerose Palma", "category": "Relative", "group": "G34", "seats": 4, "members": ["Jeffrey Palma", "Emerose Palma", "James Froilan Palma", "Raymund Palma"]},
+  {"name": "James Froilan Palma", "category": "Relative", "group": "G34", "seats": 4, "members": ["Jeffrey Palma", "Emerose Palma", "James Froilan Palma", "Raymund Palma"]},
+  {"name": "Raymund Palma", "category": "Relative", "group": "G34", "seats": 4, "members": ["Jeffrey Palma", "Emerose Palma", "James Froilan Palma", "Raymund Palma"]},
+
+  // ---- Group 35 ----
+  {"name": "Remo Mortega", "category": "Relative", "group": "G35", "seats": 6, "members": ["Remo Mortega", "Dominga Mortega", "John Paul Ian Mortega", "Antonette Mortega", "John Don Mortega", "James Cel Mortega"]},
+  {"name": "Dominga Mortega", "category": "Relative", "group": "G35", "seats": 6, "members": ["Remo Mortega", "Dominga Mortega", "John Paul Ian Mortega", "Antonette Mortega", "John Don Mortega", "James Cel Mortega"]},
+  {"name": "John Paul Ian Mortega", "category": "Relative", "group": "G35", "seats": 6, "members": ["Remo Mortega", "Dominga Mortega", "John Paul Ian Mortega", "Antonette Mortega", "John Don Mortega", "James Cel Mortega"]},
+  {"name": "Antonette Mortega", "category": "Relative", "group": "G35", "seats": 6, "members": ["Remo Mortega", "Dominga Mortega", "John Paul Ian Mortega", "Antonette Mortega", "John Don Mortega", "James Cel Mortega"]},
+  {"name": "John Don Mortega", "category": "Relative", "group": "G35", "seats": 6, "members": ["Remo Mortega", "Dominga Mortega", "John Paul Ian Mortega", "Antonette Mortega", "John Don Mortega", "James Cel Mortega"]},
+  {"name": "James Cel Mortega", "category": "Relative", "group": "G35", "seats": 6, "members": ["Remo Mortega", "Dominga Mortega", "John Paul Ian Mortega", "Antonette Mortega", "John Don Mortega", "James Cel Mortega"]},
+
+  // ---- Group 36 ----
+  {"name": "Celo Roy Mortega", "category": "Relative", "group": "G36", "seats": 4, "members": ["Celo Roy Mortega", "Daisy Mortega", "Celodonio Mortega II", "John Royce Mortega"]},
+  {"name": "Daisy Mortega", "category": "Relative", "group": "G36", "seats": 4, "members": ["Celo Roy Mortega", "Daisy Mortega", "Celodonio Mortega II", "John Royce Mortega"]},
+  {"name": "Celodonio Mortega II", "category": "Relative", "group": "G36", "seats": 4, "members": ["Celo Roy Mortega", "Daisy Mortega", "Celodonio Mortega II", "John Royce Mortega"]},
+  {"name": "John Royce Mortega", "category": "Relative", "group": "G36", "seats": 4, "members": ["Celo Roy Mortega", "Daisy Mortega", "Celodonio Mortega II", "John Royce Mortega"]},
+
+  // ---- Group 37 ----
+  {"name": "Ralph Mortega", "category": "Relative", "group": "G37", "seats": 3, "members": ["Ralph Mortega", "Maja Bianca Mortega", "Ethan Gabriel Mortega"]},
+  {"name": "Maja Bianca Mortega", "category": "Relative", "group": "G37", "seats": 3, "members": ["Ralph Mortega", "Maja Bianca Mortega", "Ethan Gabriel Mortega"]},
+  {"name": "Ethan Gabriel Mortega", "category": "ENT", "group": "G37", "seats": 3, "members": ["Ralph Mortega", "Maja Bianca Mortega", "Ethan Gabriel Mortega"]},
+
+  // ---- Group 38 ----
+  {"name": "Celso Mortega", "category": "VIP", "group": "G38", "seats": 3, "members": ["Celso Mortega", "Edel Paz Mortega", "Andrei Mortega"]},
+  {"name": "Edel Paz Mortega", "category": "Relative", "group": "G38", "seats": 3, "members": ["Celso Mortega", "Edel Paz Mortega", "Andrei Mortega"]},
+  {"name": "Andrei Mortega", "category": "Relative", "group": "G38", "seats": 3, "members": ["Celso Mortega", "Edel Paz Mortega", "Andrei Mortega"]},
+
+  // ---- Group 39 ----
+  {"name": "Rocelle Perete", "category": "Relative", "group": "G39", "seats": 2, "members": ["Rocelle Perete", "Bert Perete"]},
+  {"name": "Bert Perete", "category": "Relative", "group": "G39", "seats": 2, "members": ["Rocelle Perete", "Bert Perete"]},
+
+  // ---- Group 40 ----
+  {"name": "Melinda Mujar", "category": "Relative", "group": "G40", "seats": 5, "members": ["Melinda Mujar", "Erwin Mujar", "Martin Thomas Mortega", "Emily Mina Mujar", "Mykael Eris Mujar"]},
+  {"name": "Erwin Mujar", "category": "Relative", "group": "G40", "seats": 5, "members": ["Melinda Mujar", "Erwin Mujar", "Martin Thomas Mortega", "Emily Mina Mujar", "Mykael Eris Mujar"]},
+  {"name": "Martin Thomas Mortega", "category": "Relative", "group": "G40", "seats": 5, "members": ["Melinda Mujar", "Erwin Mujar", "Martin Thomas Mortega", "Emily Mina Mujar", "Mykael Eris Mujar"]},
+  {"name": "Emily Mina Mujar", "category": "Relative", "group": "G40", "seats": 5, "members": ["Melinda Mujar", "Erwin Mujar", "Martin Thomas Mortega", "Emily Mina Mujar", "Mykael Eris Mujar"]},
+  {"name": "Mykael Eris Mujar", "category": "Relative", "group": "G40", "seats": 5, "members": ["Melinda Mujar", "Erwin Mujar", "Martin Thomas Mortega", "Emily Mina Mujar", "Mykael Eris Mujar"]},
+
+  // ---- Group 41 ----
+  {"name": "Ofelia Mortega", "category": "Relative", "group": "G41", "seats": 3, "members": ["Ofelia Mortega", "Caroline Gomez", "Keith Balce"]},
+  {"name": "Caroline Gomez", "category": "ENT", "group": "G41", "seats": 3, "members": ["Ofelia Mortega", "Caroline Gomez", "Keith Balce"]},
+  {"name": "Keith Balce", "category": "Relative", "group": "G41", "seats": 3, "members": ["Ofelia Mortega", "Caroline Gomez", "Keith Balce"]},
+
+  // ---- Group 42 ----
+  {"name": "Zelda Artificio", "category": "Relative", "group": "G42", "seats": 5, "members": ["Zelda Artificio", "Karen Mea Artificio", "Jacob Torres", "Katrina Monica Artificio", "Arnold Artificio"]},
+  {"name": "Karen Mea Artificio", "category": "Relative", "group": "G42", "seats": 5, "members": ["Zelda Artificio", "Karen Mea Artificio", "Jacob Torres", "Katrina Monica Artificio", "Arnold Artificio"]},
+  {"name": "Jacob Torres", "category": "Relative", "group": "G42", "seats": 5, "members": ["Zelda Artificio", "Karen Mea Artificio", "Jacob Torres", "Katrina Monica Artificio", "Arnold Artificio"]},
+  {"name": "Katrina Monica Artificio", "category": "Relative", "group": "G42", "seats": 5, "members": ["Zelda Artificio", "Karen Mea Artificio", "Jacob Torres", "Katrina Monica Artificio", "Arnold Artificio"]},
+  {"name": "Arnold Artificio", "category": "Relative", "group": "G42", "seats": 5, "members": ["Zelda Artificio", "Karen Mea Artificio", "Jacob Torres", "Katrina Monica Artificio", "Arnold Artificio"]},
+
+  // ---- Group 43 ----
+  {"name": "Earl Calingacion", "category": "VIP", "group": "G43", "seats": 2, "members": ["Earl Calingacion", "Joanne May Calingacion"]},
+  {"name": "Joanne May Calingacion", "category": "VIP", "group": "G43", "seats": 2, "members": ["Earl Calingacion", "Joanne May Calingacion"]},
+
+  // ---- Group 44 ----
+  {"name": "Rocel Artiaga", "category": "VIP", "group": "G44", "seats": 1, "members": ["Rocel Artiaga"]},
+
+  // ---- Group 45 ----
+  {"name": "Karl Anthony Garcia", "category": "VIP", "group": "G45", "seats": 2, "members": ["Karl Anthony Garcia", "Sherraine Lim-Garcia"]},
+  {"name": "Sherraine Lim-Garcia", "category": "VIP", "group": "G45", "seats": 2, "members": ["Karl Anthony Garcia", "Sherraine Lim-Garcia"]},
+
+  // ---- Group 46 ----
+  {"name": "Charles Lim", "category": "Church fam", "group": "G46", "seats": 2, "members": ["Charles Lim", "Jemimah Lim"]},
+  {"name": "Jemimah Lim", "category": "Church fam", "group": "G46", "seats": 2, "members": ["Charles Lim", "Jemimah Lim"]},
+
+  // ---- Group 47 ----
+  {"name": "Jaime Felicita", "category": "Church fam", "group": "G47", "seats": 2, "members": ["Jaime Felicita", "Elexis Felicita"]},
+  {"name": "Elexis Felicita", "category": "Church fam", "group": "G47", "seats": 2, "members": ["Jaime Felicita", "Elexis Felicita"]},
+
+  // ---- Group 48 ----
+  {"name": "Jade Azupardo", "category": "Church fam", "group": "G48", "seats": 1, "members": ["Jade Azupardo"]},
+
+  // ---- Group 49 ----
+  {"name": "Ronald Abinal", "category": "VIP", "group": "G49", "seats": 2, "members": ["Ronald Abinal", "Sarah Abinal"]},
+  {"name": "Sarah Abinal", "category": "VIP", "group": "G49", "seats": 2, "members": ["Ronald Abinal", "Sarah Abinal"]},
+
+  // ---- Group 50 ----
+  {"name": "Norwil Naag", "category": "Church fam", "group": "G50", "seats": 2, "members": ["Norwil Naag", "Gwynne Naag"]},
+  {"name": "Gwynne Naag", "category": "Church fam", "group": "G50", "seats": 2, "members": ["Norwil Naag", "Gwynne Naag"]},
+
+  // ---- Group 51 ----
+  {"name": "Xenia Sepole", "category": "Church fam", "group": "G51", "seats": 3, "members": ["Xenia Sepole", "Alea Casilaso", "Alexander Sepole III"]},
+  {"name": "Alea Casilaso", "category": "Church fam", "group": "G51", "seats": 3, "members": ["Xenia Sepole", "Alea Casilaso", "Alexander Sepole III"]},
+  {"name": "Alexander Sepole III", "category": "Church fam", "group": "G51", "seats": 3, "members": ["Xenia Sepole", "Alea Casilaso", "Alexander Sepole III"]},
+
+  // ---- Group 52 ----
+  {"name": "Jonathan Talatala", "category": "VIP", "group": "G52", "seats": 2, "members": ["Jonathan Talatala", "Jerlaine Talatala"]},
+  {"name": "Jerlaine Talatala", "category": "Church fam", "group": "G52", "seats": 2, "members": ["Jonathan Talatala", "Jerlaine Talatala"]},
+
+  // ---- Group 53 ----
+  {"name": "May Ann Belleza", "category": "Church fam", "group": "G53", "seats": 4, "members": ["May Ann Belleza", "Dave Joshua Belleza", "Davy Ann Belleza", "Jo-Ava Rain Belleza"]},
+  {"name": "Dave Joshua Belleza", "category": "Church fam", "group": "G53", "seats": 4, "members": ["May Ann Belleza", "Dave Joshua Belleza", "Davy Ann Belleza", "Jo-Ava Rain Belleza"]},
+  {"name": "Davy Ann Belleza", "category": "Church fam", "group": "G53", "seats": 4, "members": ["May Ann Belleza", "Dave Joshua Belleza", "Davy Ann Belleza", "Jo-Ava Rain Belleza"]},
+  {"name": "Jo-Ava Rain Belleza", "category": "ENT", "group": "G53", "seats": 4, "members": ["May Ann Belleza", "Dave Joshua Belleza", "Davy Ann Belleza", "Jo-Ava Rain Belleza"]},
+
+  // ---- Group 54 ----
+  {"name": "Ulysses Fundano", "category": "Church fam", "group": "G54", "seats": 2, "members": ["Ulysses Fundano", "Michelle Fundano"]},
+  {"name": "Michelle Fundano", "category": "VIP", "group": "G54", "seats": 2, "members": ["Ulysses Fundano", "Michelle Fundano"]},
+
+  // ---- Group 55 ----
+  {"name": "Dennis Roquiño", "category": "VIP", "group": "G55", "seats": 1, "members": ["Dennis Roquiño"]},
+
+  // ---- Group 56 ----
+  {"name": "Allan Nales", "category": "VIP", "group": "G56", "seats": 1, "members": ["Allan Nales"]},
+
+  // ---- Group 57 ----
+  {"name": "Ronnie Ros", "category": "VIP", "group": "G57", "seats": 2, "members": ["Ronnie Ros", "Stef Mati Ros"]},
+  {"name": "Stef Mati Ros", "category": "Church fam", "group": "G57", "seats": 2, "members": ["Ronnie Ros", "Stef Mati Ros"]},
+
+  // ---- Group 58 ----
+  {"name": "Arlene Arroz", "category": "VIP", "group": "G58", "seats": 3, "members": ["Arlene Arroz", "Alene Rod Arroz", "Rodlen Arroz"]},
+  {"name": "Alene Rod Arroz", "category": "Church fam", "group": "G58", "seats": 3, "members": ["Arlene Arroz", "Alene Rod Arroz", "Rodlen Arroz"]},
+  {"name": "Rodlen Arroz", "category": "ENT", "group": "G58", "seats": 3, "members": ["Arlene Arroz", "Alene Rod Arroz", "Rodlen Arroz"]},
+
+  // ---- Group 59 ----
+  {"name": "John Sumastre", "category": "Church fam", "group": "G59", "seats": 1, "members": ["John Sumastre"]},
+
+  // ---- Group 60 ----
+  {"name": "Elisha Mae Briobo", "category": "Church fam", "group": "G60", "seats": 2, "members": ["Elisha Mae Briobo", "Dan Jeush Briobo"]},
+  {"name": "Dan Jeush Briobo", "category": "ENT", "group": "G60", "seats": 2, "members": ["Elisha Mae Briobo", "Dan Jeush Briobo"]},
+
+  // ---- Group 61 ----
+  {"name": "Jamir Ajero", "category": "Church fam", "group": "G61", "seats": 2, "members": ["Jamir Ajero", "Jeck Aiel Ajero"]},
+  {"name": "Jeck Aiel Ajero", "category": "Church fam", "group": "G61", "seats": 2, "members": ["Jamir Ajero", "Jeck Aiel Ajero"]},
+
+  // ---- Group 62 ----
+  {"name": "Jherimae Odon", "category": "ENT", "group": "G62", "seats": 1, "members": ["Jherimae Odon"]},
+
+  // ---- Group 63 ----
+  {"name": "Harvie Languian", "category": "Church fam", "group": "G63", "seats": 3, "members": ["Harvie Languian", "Khyla Dianne Languian", "Jodenson Bartolay"]},
+  {"name": "Khyla Dianne Languian", "category": "ENT", "group": "G63", "seats": 3, "members": ["Harvie Languian", "Khyla Dianne Languian", "Jodenson Bartolay"]},
+  {"name": "Jodenson Bartolay", "category": "Church fam", "group": "G63", "seats": 3, "members": ["Harvie Languian", "Khyla Dianne Languian", "Jodenson Bartolay"]},
+
+  // ---- Group 64 ----
+  {"name": "Jhon Delos Reyes", "category": "ENT", "group": "G64", "seats": 4, "members": ["Jhon Delos Reyes", "Jessica Mae Magdasoc", "Natashia Biason", "Abegail Garcia"]},
+  {"name": "Jessica Mae Magdasoc", "category": "Church fam", "group": "G64", "seats": 4, "members": ["Jhon Delos Reyes", "Jessica Mae Magdasoc", "Natashia Biason", "Abegail Garcia"]},
+  {"name": "Natashia Biason", "category": "Church fam", "group": "G64", "seats": 4, "members": ["Jhon Delos Reyes", "Jessica Mae Magdasoc", "Natashia Biason", "Abegail Garcia"]},
+  {"name": "Abegail Garcia", "category": "Church fam", "group": "G64", "seats": 4, "members": ["Jhon Delos Reyes", "Jessica Mae Magdasoc", "Natashia Biason", "Abegail Garcia"]},
+
+  // ---- Group 65 ----
+  {"name": "Naomi Cortez", "category": "Church fam", "group": "G65", "seats": 3, "members": ["Naomi Cortez", "Vanessa Mae Aguilar", "Eleale Sepole"]},
+  {"name": "Vanessa Mae Aguilar", "category": "Church fam", "group": "G65", "seats": 3, "members": ["Naomi Cortez", "Vanessa Mae Aguilar", "Eleale Sepole"]},
+  {"name": "Eleale Sepole", "category": "Church fam", "group": "G65", "seats": 3, "members": ["Naomi Cortez", "Vanessa Mae Aguilar", "Eleale Sepole"]},
+
+  // ---- Group 66 ----
+  {"name": "Tyrone Galang", "category": "ENT", "group": "G66", "seats": 3, "members": ["Tyrone Galang", "John Michael Aseneta", "John Paul Aseneta"]},
+  {"name": "John Michael Aseneta", "category": "ENT", "group": "G66", "seats": 3, "members": ["Tyrone Galang", "John Michael Aseneta", "John Paul Aseneta"]},
+  {"name": "John Paul Aseneta", "category": "Church fam", "group": "G66", "seats": 3, "members": ["Tyrone Galang", "John Michael Aseneta", "John Paul Aseneta"]},
+
+  // ---- Group 67 ----
+  {"name": "Rafael Siso", "category": "ENT", "group": "G67", "seats": 2, "members": ["Rafael Siso", "Michelle Anne Siso"]},
+  {"name": "Michelle Anne Siso", "category": "Church fam", "group": "G67", "seats": 2, "members": ["Rafael Siso", "Michelle Anne Siso"]},
+
+  // ---- Group 68 ----
+  {"name": "Joseph Ian Mendaros", "category": "ENT", "group": "G68", "seats": 4, "members": ["Joseph Ian Mendaros", "Rod Lemuel Dedase", "Jotham John Diaz", "Lancelot Reyeg"]},
+  {"name": "Rod Lemuel Dedase", "category": "ENT", "group": "G68", "seats": 4, "members": ["Joseph Ian Mendaros", "Rod Lemuel Dedase", "Jotham John Diaz", "Lancelot Reyeg"]},
+  {"name": "Jotham John Diaz", "category": "ENT", "group": "G68", "seats": 4, "members": ["Joseph Ian Mendaros", "Rod Lemuel Dedase", "Jotham John Diaz", "Lancelot Reyeg"]},
+  {"name": "Lancelot Reyeg", "category": "ENT", "group": "G68", "seats": 4, "members": ["Joseph Ian Mendaros", "Rod Lemuel Dedase", "Jotham John Diaz", "Lancelot Reyeg"]},
+
+  // ---- Group 69 ----
+  {"name": "Aaron Florentino Borbe", "category": "Friends", "group": "G69", "seats": 4, "members": ["Aaron Florentino Borbe", "Al Francis Asuncion", "Angelo Fesalbon", "Clarke Kent Tejada"]},
+  {"name": "Al Francis Asuncion", "category": "Friends", "group": "G69", "seats": 4, "members": ["Aaron Florentino Borbe", "Al Francis Asuncion", "Angelo Fesalbon", "Clarke Kent Tejada"]},
+  {"name": "Angelo Fesalbon", "category": "Friends", "group": "G69", "seats": 4, "members": ["Aaron Florentino Borbe", "Al Francis Asuncion", "Angelo Fesalbon", "Clarke Kent Tejada"]},
+  {"name": "Clarke Kent Tejada", "category": "Friends", "group": "G69", "seats": 4, "members": ["Aaron Florentino Borbe", "Al Francis Asuncion", "Angelo Fesalbon", "Clarke Kent Tejada"]},
+
+  // ---- Group 70 ----
+  {"name": "Emmanuel Justin Barnuevo", "category": "Friends", "group": "G70", "seats": 4, "members": ["Emmanuel Justin Barnuevo", "Ervin Llana", "Giraud Vinz Balgemino", "Jhobert Baquisal"]},
+  {"name": "Ervin Llana", "category": "Friends", "group": "G70", "seats": 4, "members": ["Emmanuel Justin Barnuevo", "Ervin Llana", "Giraud Vinz Balgemino", "Jhobert Baquisal"]},
+  {"name": "Giraud Vinz Balgemino", "category": "Friends", "group": "G70", "seats": 4, "members": ["Emmanuel Justin Barnuevo", "Ervin Llana", "Giraud Vinz Balgemino", "Jhobert Baquisal"]},
+  {"name": "Jhobert Baquisal", "category": "Friends", "group": "G70", "seats": 4, "members": ["Emmanuel Justin Barnuevo", "Ervin Llana", "Giraud Vinz Balgemino", "Jhobert Baquisal"]},
+
+  // ---- Group 71 ----
+  {"name": "John Alex Ganalon", "category": "Friends", "group": "G71", "seats": 4, "members": ["John Alex Ganalon", "Karlo Millena", "Kelvin Joshua De Belen", "Leo Samuel Locsin"]},
+  {"name": "Karlo Millena", "category": "Friends", "group": "G71", "seats": 4, "members": ["John Alex Ganalon", "Karlo Millena", "Kelvin Joshua De Belen", "Leo Samuel Locsin"]},
+  {"name": "Kelvin Joshua De Belen", "category": "Friends", "group": "G71", "seats": 4, "members": ["John Alex Ganalon", "Karlo Millena", "Kelvin Joshua De Belen", "Leo Samuel Locsin"]},
+  {"name": "Leo Samuel Locsin", "category": "Friends", "group": "G71", "seats": 4, "members": ["John Alex Ganalon", "Karlo Millena", "Kelvin Joshua De Belen", "Leo Samuel Locsin"]},
+
+  // ---- Group 72 ----
+  {"name": "Wenard Sean Almayda", "category": "Friends", "group": "G72", "seats": 2, "members": ["Wenard Sean Almayda", "Armie Ruth Beltran"]},
+  {"name": "Armie Ruth Beltran", "category": "Friends", "group": "G72", "seats": 2, "members": ["Wenard Sean Almayda", "Armie Ruth Beltran"]},
+
+  // ---- Group 73 ----
+  {"name": "Mariz Orlanda", "category": "Friends", "group": "G73", "seats": 1, "members": ["Mariz Orlanda"]},
+
+  // ---- Group 74 ----
+  {"name": "Mae Arandia", "category": "Friends", "group": "G74", "seats": 1, "members": ["Mae Arandia"]},
+
+  // ---- Group 75 ----
+  {"name": "Luren Funes", "category": "Friends", "group": "G75", "seats": 3, "members": ["Luren Funes", "Carlo Estor", "Alliah Nicole Castillo"]},
+  {"name": "Carlo Estor", "category": "Friends", "group": "G75", "seats": 3, "members": ["Luren Funes", "Carlo Estor", "Alliah Nicole Castillo"]},
+  {"name": "Alliah Nicole Castillo", "category": "Friends", "group": "G75", "seats": 3, "members": ["Luren Funes", "Carlo Estor", "Alliah Nicole Castillo"]},
+
+  // ---- Group 76 ----
+  {"name": "Rene Christian Camposano", "category": "Friends", "group": "G76", "seats": 2, "members": ["Rene Christian Camposano", "Ailene Joi Ozaeta"]},
+  {"name": "Ailene Joi Ozaeta", "category": "Friends", "group": "G76", "seats": 2, "members": ["Rene Christian Camposano", "Ailene Joi Ozaeta"]},
+
+  // ---- Group 77 ----
+  {"name": "Beverly Serrano Bilbao", "category": "Family friend", "group": "G77", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
+  {"name": "Esther Padilla Rivera", "category": "Family friend", "group": "G77", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
+  {"name": "Sherry Javier", "category": "Family friend", "group": "G77", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
+  {"name": "Katherine Dolot", "category": "Family friend", "group": "G77", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
+  {"name": "Marie Quisumbing", "category": "Family friend", "group": "G77", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
+  {"name": "Madeline Rañola", "category": "Family friend", "group": "G77", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
+  {"name": "Emily Bañares Basbas", "category": "Family friend", "group": "G77", "seats": 7, "members": ["Beverly Serrano Bilbao", "Esther Padilla Rivera", "Sherry Javier", "Katherine Dolot", "Marie Quisumbing", "Madeline Rañola", "Emily Bañares Basbas"]},
+
+  // ---- Group 78 ----
+  {"name": "Lilian Madrigalejos", "category": "Family friend", "group": "G78", "seats": 4, "members": ["Lilian Madrigalejos", "Geraldine Pacardo", "Edwin Manjares", "Joanne Morales"]},
+  {"name": "Geraldine Pacardo", "category": "Family friend", "group": "G78", "seats": 4, "members": ["Lilian Madrigalejos", "Geraldine Pacardo", "Edwin Manjares", "Joanne Morales"]},
+  {"name": "Edwin Manjares", "category": "Family friend", "group": "G78", "seats": 4, "members": ["Lilian Madrigalejos", "Geraldine Pacardo", "Edwin Manjares", "Joanne Morales"]},
+  {"name": "Joanne Morales", "category": "Family friend", "group": "G78", "seats": 4, "members": ["Lilian Madrigalejos", "Geraldine Pacardo", "Edwin Manjares", "Joanne Morales"]},
+
+  // ---- Group 79 ----
+  {"name": "Margie Llagas", "category": "Family friend", "group": "G79", "seats": 3, "members": ["Margie Llagas", "Ohyes Añon", "Analiza Adel"]},
+  {"name": "Ohyes Añon", "category": "Family friend", "group": "G79", "seats": 3, "members": ["Margie Llagas", "Ohyes Añon", "Analiza Adel"]},
+  {"name": "Analiza Adel", "category": "Family friend", "group": "G79", "seats": 3, "members": ["Margie Llagas", "Ohyes Añon", "Analiza Adel"]},
+
+  // ---- Group 80 ----
+  {"name": "Myk Xavier Albao", "category": "Co-worker", "group": "G80", "seats": 6, "members": ["Myk Xavier Albao", "Maria Elizabeth Almero-Albao", "Melanie Aurie Arevalo", "Karl Angelo Biag", "Denzel Ethan Cea", "Joan Velasco"]},
+  {"name": "Maria Elizabeth Almero-Albao", "category": "Co-worker", "group": "G80", "seats": 6, "members": ["Myk Xavier Albao", "Maria Elizabeth Almero-Albao", "Melanie Aurie Arevalo", "Karl Angelo Biag", "Denzel Ethan Cea", "Joan Velasco"]},
+  {"name": "Melanie Aurie Arevalo", "category": "Co-worker", "group": "G80", "seats": 6, "members": ["Myk Xavier Albao", "Maria Elizabeth Almero-Albao", "Melanie Aurie Arevalo", "Karl Angelo Biag", "Denzel Ethan Cea", "Joan Velasco"]},
+  {"name": "Karl Angelo Biag", "category": "Co-worker", "group": "G80", "seats": 6, "members": ["Myk Xavier Albao", "Maria Elizabeth Almero-Albao", "Melanie Aurie Arevalo", "Karl Angelo Biag", "Denzel Ethan Cea", "Joan Velasco"]},
+  {"name": "Denzel Ethan Cea", "category": "Co-worker", "group": "G80", "seats": 6, "members": ["Myk Xavier Albao", "Maria Elizabeth Almero-Albao", "Melanie Aurie Arevalo", "Karl Angelo Biag", "Denzel Ethan Cea", "Joan Velasco"]},
+  {"name": "Joan Velasco", "category": "Co-worker", "group": "G80", "seats": 6, "members": ["Myk Xavier Albao", "Maria Elizabeth Almero-Albao", "Melanie Aurie Arevalo", "Karl Angelo Biag", "Denzel Ethan Cea", "Joan Velasco"]},
+
+  // ---- Group 81 ----
+  {"name": "Circle Earl", "category": "", "group": "G81", "seats": 1, "members": ["Circle Earl"]}
+];
   </script>
 
   <script>
@@ -2318,6 +2886,132 @@
       if (event && event.target !== document.getElementById('qrModal')) return;
       document.getElementById('qrModal').classList.remove('show');
     }
+
+    // Show hint after the page settles
+setTimeout(() => {
+  const hint = document.getElementById('musicHint');
+  if (hint && !hasUnmuted) {
+    hint.style.opacity = '1';
+    hint.style.transform = 'translateY(0)';
+  }
+}, 1500);
+
+// Fade the hint the moment they interact
+['click', 'touchstart', 'keydown', 'scroll', 'pointerdown'].forEach(evt => {
+  window.addEventListener(evt, () => {
+    const hint = document.getElementById('musicHint');
+    if (hint) {
+      hint.style.opacity = '0';
+      hint.style.transform = 'translateY(10px)';
+    }
+  }, { once: true });
+});
+
+document.getElementById('enterBtn').addEventListener('click', () => {
+  // Unmute the music immediately (this IS a user gesture — guaranteed to work)
+  music.muted = false;
+  music.volume = 0.55;
+  hasUnmuted = true;
+  music.play().catch(() => {});
+  setPlayingUI(true);
+
+  // Fade out the overlay
+  const overlay = document.getElementById('enterOverlay');
+  overlay.style.opacity = '0';
+  overlay.style.visibility = 'hidden';
+  setTimeout(() => overlay.remove(), 900);
+});
   </script>
+
+  <script>
+  // ================= BACKGROUND MUSIC (Local MP3) =================
+  const music = new Audio('music/Atlantic Starr - Always.mp3');
+  music.loop = true;
+  music.volume = 0.55;
+  music.preload = 'auto';
+
+  let musicPlaying = false;
+
+  const musicBtn = document.getElementById('musicToggle');
+  const iconPlay  = document.getElementById('musicIconPlay');
+  const iconPause = document.getElementById('musicIconPause');
+
+  function setPlayingUI(playing) {
+    musicPlaying = playing;
+    if (playing) {
+      musicBtn.classList.add('playing');
+      iconPlay.style.display  = 'none';
+      iconPause.style.display = 'block';
+      musicBtn.title = 'Pause music';
+    } else {
+      musicBtn.classList.remove('playing');
+      iconPlay.style.display  = 'block';
+      iconPause.style.display = 'none';
+      musicBtn.title = 'Play music';
+    }
+  }
+
+  // ---- Autoplay: start muted (allowed), then unmute on first gesture ----
+  music.muted = true;
+
+  function tryPlay() {
+    const p = music.play();
+    if (p && p.catch) p.catch(() => { /* ignore */ });
+  }
+
+  // Try muted autoplay right away
+  tryPlay();
+  setPlayingUI(true);
+
+  function unmuteOnFirstGesture() {
+    music.muted = false;
+    music.volume = 0.55;
+    tryPlay();
+    setPlayingUI(true);
+  }
+
+  ['click', 'touchstart', 'keydown', 'scroll', 'mousemove'].forEach(evt => {
+    window.addEventListener(evt, unmuteOnFirstGesture, { once: true, capture: true });
+  });
+
+  // ---- Manual toggle button ----
+  musicBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (musicPlaying) {
+      music.pause();
+      setPlayingUI(false);
+    } else {
+      music.muted = false;
+      music.volume = 0.55;
+      tryPlay();
+      setPlayingUI(true);
+    }
+  });
+</script>
+
+<div id="musicHint" style="
+  position:fixed;
+  bottom:90px;
+  right:24px;
+  background:var(--plum-deep);
+  color:var(--cream);
+  padding:10px 18px;
+  border-radius:24px;
+  font-family:'Jost',sans-serif;
+  font-size:12px;
+  letter-spacing:0.08em;
+  z-index:199;
+  box-shadow:0 6px 16px rgba(0,0,0,0.25);
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity 0.5s ease, transform 0.5s ease;
+  pointer-events:none;
+  max-width:220px;
+  text-align:center;
+  line-height:1.4;
+">
+  ♫ Tap anywhere for music
+</div>
+
 </body>
 </html>
